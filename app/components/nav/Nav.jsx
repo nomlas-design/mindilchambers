@@ -30,7 +30,7 @@ const Nav = () => {
     <div className={classes.nav}>
       <div className={classes.navInner}>
         <a href='/' className={classes.navLogo}>
-          <Image fill src='/logo-white.svg' alt='Mindil Chambers' />
+          <Image fill src='/logo-white.svg' alt='Mindil Chambers' priority />
         </a>
         <MenuButton menuOpen={menuOpen} onMenuToggle={onMenuToggle} />
       </div>
