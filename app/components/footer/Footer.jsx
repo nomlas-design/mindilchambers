@@ -1,10 +1,18 @@
 'use client';
 import { motion } from 'framer-motion';
-import { contentVariants } from '@/app/animations/homeVariants';
+import {
+  contentVariants,
+  footerNavVariants,
+} from '@/app/animations/homeVariants';
 import Button from '@/app/components/Button.jsx';
 const Footer = ({ variant }) => {
   return (
-    <footer className={`footer ${variant}`}>
+    <motion.footer
+      initial='hidden'
+      animate='visible'
+      variants={footerNavVariants}
+      className={`footer ${variant}`}
+    >
       <div className='footer__content'>
         <motion.div
           initial='hidden'
@@ -36,7 +44,7 @@ const Footer = ({ variant }) => {
           />
         </motion.div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

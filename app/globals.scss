@@ -70,17 +70,9 @@ a {
   grid-template-rows: 1fr $footer-height;
   grid-gap: 1px;
   color: #fcfcfc;
-  background: $background;
+  animation: $background-colour;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(121, 107, 93, 0.566);
-  }
+  overflow: hidden;
 
   &__main {
     height: 100%;
