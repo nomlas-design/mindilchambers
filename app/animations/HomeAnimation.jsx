@@ -1,21 +1,20 @@
 'use client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import HomeNav from '@/app/components/homenav/HomeNav';
 import {
   mainVariants,
   topNavVariants,
   contentVariants,
 } from '@/app/animations/homeVariants';
-import HomeNav from '@/app/components/homenav/HomeNav.jsx';
-import Footer from '@/app/components/footer/Footer.jsx';
+import Footer from '@/app/components/footer/Footer';
+import dynamic from 'next/dynamic';
 
-const HomeAnimation = ({ children }) => {
+const HomeAnimation = ({ children, navSquareData }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-
   useEffect(() => {
     setIsLoaded(true);
   }, []);
-
   return (
     <AnimatePresence>
       {isLoaded && (
@@ -39,7 +38,7 @@ const HomeAnimation = ({ children }) => {
             animate='visible'
             variants={topNavVariants}
           >
-            <HomeNav />
+            <HomeNav navSquareData={navSquareData} />
           </motion.div>
           <Footer variant='home' />
         </div>
@@ -47,5 +46,4 @@ const HomeAnimation = ({ children }) => {
     </AnimatePresence>
   );
 };
-
 export default HomeAnimation;

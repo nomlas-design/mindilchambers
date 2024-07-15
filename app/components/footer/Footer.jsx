@@ -20,10 +20,6 @@ const Footer = ({ variant }) => {
           </p>
         </div>
       </div>
-      {/* <div className='footer__content'>
-
-      </div> */}
-
       <div className='footer__content footer__content--columns'>
         <div className='footer__content__column'>
           <Button
@@ -34,17 +30,6 @@ const Footer = ({ variant }) => {
             type='up'
           />
         </div>
-        {/* <div className='footer__content__details'>
-          <a className='link' href='tel:+614 567 890'>
-            +614 567 890
-          </a>
-          <span>
-            123 Smith Street, <br />
-            The Gardens,
-            <br />
-            Mindil Beach, NT 0820
-          </span>
-        </div> */}
       </div>
     </motion.footer>
   );

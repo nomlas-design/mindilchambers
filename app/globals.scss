@@ -233,8 +233,9 @@ a {
         filter: saturate(1);
       }
       .navsquare__info {
-        max-height: 500px;
+        max-height: 400px;
         transition-delay: 0s;
+        transition-duration: 1s;
         span {
           opacity: 1;
           transition-delay: 0.2s;
@@ -651,5 +652,25 @@ main {
     .footer__image {
       bottom: 0;
     }
+  }
+}
+
+// Loading Screen
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: $background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  &__logo {
+    width: 20vw;
+    height: 20vw;
   }
 }

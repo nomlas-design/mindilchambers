@@ -1,3 +1,4 @@
+'use client';
 import { useState, useRef } from 'react';
 import Image from 'next/image';
 import {
@@ -9,7 +10,7 @@ import {
 } from 'framer-motion';
 import { contentVariants } from '@/app/animations/homeVariants';
 
-const NavSquare = ({ title, image, link = '/', variant }) => {
+const NavSquare = ({ title, image, link = '/', content, variant }) => {
   const containerRef = useRef(null);
   const [bgX, setBgX] = useState('0%');
   const [bgY, setBgY] = useState('0%');
@@ -88,10 +89,7 @@ const NavSquare = ({ title, image, link = '/', variant }) => {
       >
         <span className='navsquare__text'>{title}</span>
         <div className='navsquare__info'>
-          <span>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </span>
+          <span>{content}</span>
         </div>
       </motion.div>
       <motion.div
