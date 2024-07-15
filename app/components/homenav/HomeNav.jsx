@@ -6,7 +6,7 @@ import {
 
 const HomeNav = ({ navSquareData }) => {
   return (
-    <nav className='home-grid__nav'>
+    <>
       <NavSquare
         title='Our Members'
         image='/blocktop.jpg'
@@ -21,7 +21,7 @@ const HomeNav = ({ navSquareData }) => {
         content={navSquareData?.practices}
         variant={bottomNavVariants}
       />
-    </nav>
+    </>
   );
 };
 

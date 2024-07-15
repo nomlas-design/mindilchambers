@@ -1,6 +1,7 @@
 'use client';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
+import Image from 'next/image';
 import HomeNav from '@/app/components/homenav/HomeNav';
 import {
   mainVariants,
@@ -8,11 +9,10 @@ import {
   contentVariants,
 } from '@/app/animations/homeVariants';
 import Footer from '@/app/components/footer/Footer';
-import dynamic from 'next/dynamic';
 
 const HomeAnimation = ({ children, navSquareData }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
+  useLayoutEffect(() => {
     setIsLoaded(true);
   }, []);
   return (
@@ -29,17 +29,19 @@ const HomeAnimation = ({ children, navSquareData }) => {
               initial='hidden'
               animate='visible'
               variants={contentVariants}
+              className='home-grid__main__inner'
             >
               {children}
             </motion.div>
           </motion.main>
-          <motion.div
+          <motion.nav
             initial='hidden'
             animate='visible'
             variants={topNavVariants}
+            className='home-grid__nav'
           >
             <HomeNav navSquareData={navSquareData} />
-          </motion.div>
+          </motion.nav>
           <Footer variant='home' />
         </div>
       )}
