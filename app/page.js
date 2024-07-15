@@ -15,8 +15,7 @@ const Home = async () => {
   ]);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <LoadingScreen />
+    <Suspense fallback={<LoadingScreen />}>
       <HomeAnimation navSquareData={navSquareData}>
         <div className='home-grid__main__logo'>
           <Image fill src='/logo-white.svg' alt='Mindil Chambers' priority />
