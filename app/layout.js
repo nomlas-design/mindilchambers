@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={hind_siliguri.className}>
-        <div id='root'>{children} </div>
+        <div id='root'>{children}</div>
       </body>
     </html>
   );

@@ -79,7 +79,7 @@ a {
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    background-image: url('/block-png.png');
+    background-image: url('/blockmain.jpg');
     background-size: cover;
     background-position: left;
     border-right: 1px solid $border-colour;
@@ -141,7 +141,7 @@ a {
     font-size: 1.75rem;
     line-height: 1.4;
     overflow: hidden;
-    border-bottom: 1px solid $border-colour;
+    border-bottom: 1px inset rgba(255, 255, 255, 0.396);
 
     &__bg {
       position: absolute;
@@ -153,7 +153,7 @@ a {
       background-size: cover;
       background-repeat: no-repeat;
       transform: scale(1.1);
-      filter: saturate(0.65);
+      filter: saturate(0.8);
       transition: filter 0.3s ease-in-out;
 
       &::before {
@@ -579,18 +579,18 @@ main {
   color: white;
   height: 100%;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/footer_overlay.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    filter: opacity(0.05);
-  }
+  // &::before {
+  //   content: '';
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   background-image: url('/blockmain.jpg');
+  //   background-size: cover;
+  //   background-repeat: no-repeat;
+  //   filter: opacity(0.05);
+  // }
 
   &__content {
     position: relative;
