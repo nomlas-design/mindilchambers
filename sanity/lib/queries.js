@@ -13,6 +13,9 @@ export const NAV_SQUARE_QUERY = groq`*[_type == "homePage"][0]{
 
 // Global content queries
 
-export const ACKNOWLEDGEMENT_QUERY = groq`*[_type == "globalContent"][0]{
-  acknowledgmentOfCountry
+export const GLOBAL_QUERY = `*[_type == "globalContent"][0] {
+  acknowledgmentOfCountry,
+  address,
+  phoneNumber,
+  email
 }`;

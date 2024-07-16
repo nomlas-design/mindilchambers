@@ -10,7 +10,7 @@ const Footer = ({ variant }) => {
     <motion.footer
       initial='hidden'
       animate='visible'
-      variants={footerNavVariants}
+      variants={variant === 'main' ? footerNavVariants : contentVariants}
       className={`footer ${variant}`}
     >
       <div className='footer__content'>
