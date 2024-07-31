@@ -32,7 +32,6 @@ const Footer = ({ variant, globalData }) => {
             priority
           />
         </div> */}
-        <p>{globalData.acknowledgmentOfCountry}</p>
       </motion.div>
     </motion.footer>
   );
