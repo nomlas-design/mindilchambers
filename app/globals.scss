@@ -1,6 +1,6 @@
 $padding: 2rem;
 $border-colour: #412d184f;
-$footer-height: 10vh;
+$footer-height: auto;
 $background-colour: #fbf1dd;
 $background-text-colour: #fdf8ee;
 $background: #20150c;
@@ -888,24 +888,19 @@ main.template {
 
   &__content {
     position: relative;
+    width: 100%;
     z-index: 1;
-    &--columns {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 3rem;
-    }
-    &__column {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+
+    &__contact {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      align-items: flex-end;
 
-      p {
-        border-top: 1px solid $background-text-colour;
-        padding-top: 0.5rem;
-        text-align: right;
-        font-size: 0.9rem;
+      span {
+        white-space: nowrap;
       }
     }
     &__details {
@@ -924,23 +919,47 @@ main.template {
 
   &.home {
     .footer__content {
-      &__details {
-        font-size: calc(0.4vw + 0.4vh);
-        a {
-          font-size: calc(0.5vw + 0.5vh);
-          letter-spacing: calc(0.03vw + 0.03vh);
-          line-height: 1.2;
-        }
-      }
-      &__country {
-        @include breakpoint('medium') {
-          font-size: 0.9rem;
-        }
-        font-size: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      text-align: center;
+      gap: 0.75rem;
+
+      p {
+        margin: 0;
       }
     }
-    .footer__image {
-      bottom: 0;
+    .footer__content__text {
+      font-size: 1.2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid $background-text-colour;
+    }
+    .footer__content__separator {
+      position: relative;
+      height: 35px;
+      width: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      // &::after {
+      //   content: '';
+      //   position: absolute;
+      //   top: auto;
+      //   right: 45px;
+      //   width: 300px;
+      //   border: 1px solid $background-text-colour;
+      // }
+
+      // &::before {
+      //   content: '';
+      //   position: absolute;
+      //   top: auto;
+      //   left: 45px;
+      //   width: 300px;
+      //   border: 1px solid $background-text-colour;
+      // }
     }
   }
 }

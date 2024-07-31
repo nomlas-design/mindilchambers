@@ -1,21 +1,21 @@
 'use client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useLayoutEffect } from 'react';
-import Image from 'next/image';
 import HomeNav from '@/app/components/homenav/HomeNav';
 import {
   mainVariants,
   topNavVariants,
   contentVariants,
-  mainVariantsUnderlay,
 } from '@/app/animations/homeVariants';
 import Footer from '@/app/components/footer/Footer';
 
-const HomeAnimation = ({ children, navSquareData }) => {
+const HomeAnimation = ({ children, navSquareData, globalData }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+
   useLayoutEffect(() => {
     setIsLoaded(true);
   }, []);
+
   return (
     <AnimatePresence>
       {isLoaded && (
@@ -43,7 +43,7 @@ const HomeAnimation = ({ children, navSquareData }) => {
           >
             <HomeNav navSquareData={navSquareData} />
           </motion.nav>
-          <Footer variant='home' />
+          <Footer globalData={globalData} variant='home' />
         </div>
       )}
     </AnimatePresence>
