@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  if (request.nextUrl.pathname.startsWith('/logos/email_logo.png')) {
+  if (request.nextUrl.pathname.startsWith('/logos/logoemail.png')) {
     return NextResponse.next();
   }
   const authorized = request.cookies.get('authorized')?.value;
