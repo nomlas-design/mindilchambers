@@ -15,10 +15,10 @@ const HomeNav = ({ navSquareData }) => {
         variant={topNavVariants}
       />
       <NavSquare
-        title='Areas of Practice'
+        title='Get in touch'
         image='/blockbottom.jpg'
         link='/services'
-        content={navSquareData?.practices}
+        content={navSquareData?.contact}
         variant={bottomNavVariants}
       />
     </>

@@ -7,6 +7,7 @@ import {
   mainVariants,
   topNavVariants,
   contentVariants,
+  mainVariantsUnderlay,
 } from '@/app/animations/homeVariants';
 import Footer from '@/app/components/footer/Footer';
 

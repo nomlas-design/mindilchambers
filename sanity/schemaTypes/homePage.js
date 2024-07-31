@@ -13,7 +13,18 @@ export const homePage = {
     {
       name: 'intro',
       title: 'Introduction',
-      type: 'text',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          lists: [],
+          marks: {
+            decorators: [],
+            annotations: [],
+          },
+        },
+      ],
     },
     {
       name: 'members',

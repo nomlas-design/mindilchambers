@@ -8,7 +8,7 @@ export const INTRO_QUERY = groq`*[_type == "homePage"][0]{
 
 export const NAV_SQUARE_QUERY = groq`*[_type == "homePage"][0]{
   members,
-  practices
+  contact
 }`;
 
 // Global content queries

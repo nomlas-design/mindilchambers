@@ -88,9 +88,11 @@ const NavSquare = ({ title, image, link = '/', content, variant }) => {
         variants={contentVariants}
       >
         <span className='navsquare__text'>{title}</span>
-        <div className='navsquare__info'>
-          <span>{content}</span>
-        </div>
+        {content && (
+          <div className='navsquare__info'>
+            <span>{content}</span>
+          </div>
+        )}
       </motion.div>
       <motion.div
         className='navsquare__arrow'
@@ -98,9 +100,7 @@ const NavSquare = ({ title, image, link = '/', content, variant }) => {
         animate='visible'
         variants={contentVariants}
       >
-        <div>
-          <Image fill src='icons/icon__arrowup.svg' alt='' />
-        </div>
+        <Image fill src='icons/icon__arrowup.svg' alt='' />
       </motion.div>
     </motion.a>
   );

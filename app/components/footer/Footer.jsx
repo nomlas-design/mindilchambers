@@ -4,13 +4,12 @@ import {
   contentVariants,
   footerNavVariants,
 } from '@/app/animations/homeVariants';
-import Button from '@/app/components/Button.jsx';
 const Footer = ({ variant }) => {
   return (
     <motion.footer
       initial='hidden'
       animate='visible'
-      variants={variant === 'main' ? footerNavVariants : contentVariants}
+      variants={variant === 'home' ? footerNavVariants : contentVariants}
       className={`footer ${variant}`}
     >
       <div className='footer__content'>
@@ -28,22 +27,14 @@ const Footer = ({ variant }) => {
           </p>
         </motion.div>
       </div>
-      <div className='footer__content footer__content--columns'>
+      {/* <div className='footer__content footer__content--columns'>
         <motion.div
           initial='hidden'
           animate='visible'
           variants={contentVariants}
           className='footer__content__column'
-        >
-          <Button
-            text='Get in touch'
-            colour='white'
-            size='static'
-            href='/contact'
-            type='up'
-          />
-        </motion.div>
-      </div>
+        ></motion.div>
+      </div> */}
     </motion.footer>
   );
 };

@@ -12,7 +12,7 @@ export const topNavVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.3, ease: 'easeOut', delay: 0.3 },
+    transition: { duration: 0.3, ease: 'easeOut', delay: 0.2 },
   },
 };
 
@@ -21,7 +21,7 @@ export const bottomNavVariants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.4, ease: 'easeOut', delay: 0.6 },
+    transition: { duration: 0.4, ease: 'easeOut', delay: 0.12 },
   },
 };
 
@@ -30,14 +30,25 @@ export const footerNavVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: 'easeOut', delay: 0.4 },
+    transition: { duration: 0.4, ease: 'easeOut', delay: 0.2 },
   },
 };
 
 export const contentVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, y: 5 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.6, ease: 'easeOut', delay: 1.5 },
+    y: 0,
+
+    transition: { duration: 0.2, ease: 'easeOut', delay: 1.2 },
+  },
+};
+
+export const absoluteVariants = {
+  hidden: { opacity: 0, y: 5 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: 'easeOut', delay: 1.5 },
   },
 };
