@@ -26,7 +26,7 @@ export default function Login() {
   return (
     <>
       <div className='auth__logo'>
-        <Image src='/logos/logo_email.png' fill alt='Mindil Chambers' />
+        <Image src='/logos/logoemail.png' fill alt='Mindil Chambers' />
       </div>
       <form onSubmit={handleSubmit}>
         <input
