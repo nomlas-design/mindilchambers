@@ -11,6 +11,9 @@ const nextConfig = {
   experimental: {
     taint: true,
   },
+  env: {
+    PASSWORD_PROTECT: true,
+  },
 };
 
 export default nextConfig;
