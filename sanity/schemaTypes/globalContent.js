@@ -6,7 +6,21 @@ export const globalContent = {
     {
       name: 'acknowledgmentOfCountry',
       title: 'Acknowledgment of Country',
-      type: 'text',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          lists: [],
+          marks: {
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+            ],
+            annotations: [],
+          },
+        },
+      ],
     },
     {
       name: 'address',

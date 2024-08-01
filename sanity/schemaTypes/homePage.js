@@ -32,8 +32,8 @@ export const homePage = {
       type: 'text',
     },
     {
-      name: 'practices',
-      title: 'Areas of Practice Description',
+      name: 'contact',
+      title: 'Get In Touch Description',
       type: 'text',
     },
   ],

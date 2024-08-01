@@ -1,6 +1,8 @@
 'use client';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { PortableText } from '@portabletext/react';
+import FancyLink from '@/app/components/links/FancyLink';
 import {
   contentVariants,
   footerNavVariants,
@@ -19,19 +21,21 @@ const Footer = ({ variant, globalData }) => {
         variants={contentVariants}
         className='footer__content'
       >
-        {/* <p className='footer__content__text'>
-          We take pride in providing fierce representation. We pursue
-          individualised justice for our clients as well as litigation with
-          broader systemic implications.
-        </p> */}
-        {/* <div className='footer__content__separator'>
-          <Image
-            fill
-            src='logos/logo_single.svg'
-            alt='Mindil Chambers'
-            priority
-          />
-        </div> */}
+        <PortableText value={globalData.acknowledgmentOfCountry} />
+        <div className='footer__content__nav'>
+          <div className='footer__content__row'>
+            <div className='footer__content__nav__img'>
+              <Image
+                fill
+                src='logos/logo_single.svg'
+                alt='Mindil Chambers'
+                priority
+              />
+            </div>
+            <FancyLink text='Privacy Policy' to='/' />
+          </div>
+          <span>© {new Date().getFullYear()} Mindil Chambers</span>
+        </div>
       </motion.div>
     </motion.footer>
   );

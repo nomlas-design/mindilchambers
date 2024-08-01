@@ -25,11 +25,10 @@ const Home = async () => {
         if (children.length === 0) {
           return null;
         }
-
         if (index === 0) {
           return <h1>{children}</h1>;
         } else {
-          return <p>{children}</p>;
+          return <h2>{children}</h2>;
         }
       },
     },
@@ -37,13 +36,8 @@ const Home = async () => {
 
   return (
     <>
-      <Head>
-        <link rel='preload' href='/blockmain.jpg' as='image' />
-        <link rel='preload' href='/blockbottom.jpg' as='image' />
-        <link rel='preload' href='/blocktop.jpg' as='image' />
-        <link rel='preload' href='/logo-white.svg' as='image' />
-      </Head>
-      <ClientLoadingWrapper>
+      <Head></Head>
+      <ClientLoadingWrapper key='home-page'>
         <HomeAnimation globalData={globalData} navSquareData={navSquareData}>
           <div className='home-grid__main__logo'>
             <Image fill src='/logo-white.svg' alt='Mindil Chambers' priority />

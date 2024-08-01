@@ -18,7 +18,7 @@ const MenuOverlay = ({ content }) => {
   ];
 
   return (
-    <>
+    <div className='nav__inner'>
       <motion.div
         initial='hidden'
         animate='visible'
@@ -50,7 +50,7 @@ const MenuOverlay = ({ content }) => {
               <Image fill src='/icons/icon__email.svg' alt='Email' />
             </div>
             <Button
-              text='Get in touch'
+              text='contact@mindilchambers.com.au'
               href={`mailto:${email}`}
               size='menu'
               type='up'
@@ -58,7 +58,7 @@ const MenuOverlay = ({ content }) => {
           </div>
         </div>
       </motion.div>
-      <nav className='nav__links'>
+      <motion.nav className='nav__links' initial='hidden' animate='visible'>
         {menuItems.map((item, index) => (
           <MenuLink
             key={item.href}
@@ -67,20 +67,20 @@ const MenuOverlay = ({ content }) => {
             index={index}
           />
         ))}
-      </nav>
+      </motion.nav>
       <motion.div
         className='nav__footer'
         variants={menuSecondVariants}
         initial='hidden'
         animate='visible'
       >
-        <p>{acknowledgmentOfCountry}</p>
+        <PortableText content={acknowledgmentOfCountry} />
         <div className='nav__footer__row'>
           <span>© Mindil Chambers {currentYear}</span>
           <a className='textlink'>Privacy Policy</a>
         </div>
       </motion.div>
-    </>
+    </div>
   );
 };
 

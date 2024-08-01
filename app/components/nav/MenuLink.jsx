@@ -13,13 +13,16 @@ const MenuLink = ({ href, text, index }) => {
   });
 
   return (
-    <Link
-      onMouseOver={() => setIsHovered(true)}
-      className={classes}
-      href={href}
-    >
-      {text}
-    </Link>
+    <motion.div variants={menuItemVariants} custom={index}>
+      <Link
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className={classes}
+        href={href}
+      >
+        {text}
+      </Link>
+    </motion.div>
   );
 };
 

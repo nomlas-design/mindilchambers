@@ -12,7 +12,7 @@ export default async function RoutesLayout({ children }) {
     <>
       <Nav content={globalData} />
       <main className='template'>{children}</main>
-      <Footer variant='main' />
+      <Footer globalData={globalData} variant='main' />
     </>
   );
 }

@@ -1,15 +1,17 @@
 export const menuFirstVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, y: 5 },
   visible: {
     opacity: 1,
+    y: 0,
     transition: { duration: 0.6, ease: 'easeOut', delay: 1 },
   },
 };
 
 export const menuSecondVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, y: 5 },
   visible: {
     opacity: 1,
+    y: 0,
     transition: { duration: 0.6, ease: 'easeOut', delay: 1 },
   },
 };
@@ -34,7 +36,7 @@ export const menuItemVariants = {
     transition: {
       duration: 0.5,
       ease: 'easeOut',
-      delay: 0.2 + custom * 0.1,
+      delay: 0.5 + custom * 0.1,
     },
   }),
 };
