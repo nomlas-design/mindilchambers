@@ -32,7 +32,10 @@ export default function Login() {
         <input
           type='password'
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            console.log(e.target.value);
+          }}
         />
         <button type='submit'>Login</button>
       </form>

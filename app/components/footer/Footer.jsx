@@ -21,17 +21,22 @@ const Footer = ({ variant, globalData }) => {
         variants={contentVariants}
         className='footer__content'
       >
-        <PortableText value={globalData.acknowledgmentOfCountry} />
+        <div className='footer__content__country'>
+          <div className='flag__container'>
+            <Image src='/flag_temp.png' alt='Larrakia Flag' fill />
+          </div>
+          <PortableText value={globalData?.acknowledgmentOfCountry} />
+        </div>
         <div className='footer__content__nav'>
           <div className='footer__content__row'>
-            <div className='footer__content__nav__img'>
+            {/* <div className='footer__content__nav__img'>
               <Image
                 fill
                 src='logos/logo_single.svg'
                 alt='Mindil Chambers'
                 priority
               />
-            </div>
+            </div> */}
             <FancyLink text='Privacy Policy' to='/' />
           </div>
           <span>© {new Date().getFullYear()} Mindil Chambers</span>

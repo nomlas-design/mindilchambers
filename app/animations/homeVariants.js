@@ -39,8 +39,8 @@ export const contentVariants = {
   visible: {
     opacity: 1,
     y: 0,
-
-    transition: { duration: 0.2, ease: 'easeOut', delay: 1.2 },
+    x: 0,
+    transition: { duration: 0.4, ease: 'easeOut', delay: 0.6 },
   },
 };
 

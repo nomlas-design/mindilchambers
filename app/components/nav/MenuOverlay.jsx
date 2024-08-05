@@ -8,6 +8,7 @@ import {
   menuSecondVariants,
   menuContainerVariants,
 } from '@/app/animations/menuVariants';
+import FancyLink from '../links/FancyLink';
 
 const MenuOverlay = ({ content }) => {
   const { acknowledgmentOfCountry, address, phoneNumber, email } = content;
@@ -38,23 +39,13 @@ const MenuOverlay = ({ content }) => {
             <div className='nav__contact__icon'>
               <Image fill src='/icons/icon__phone.svg' alt='Email' />
             </div>
-            <Button
-              text={phoneNumber}
-              href={`tel:${phoneNumber}`}
-              size='menu'
-              type='up'
-            />
+            <FancyLink text={phoneNumber} to={`tel:${phoneNumber}`} />
           </div>
           <div className='nav__contact__row'>
             <div className='nav__contact__icon'>
               <Image fill src='/icons/icon__email.svg' alt='Email' />
             </div>
-            <Button
-              text='contact@mindilchambers.com.au'
-              href={`mailto:${email}`}
-              size='menu'
-              type='up'
-            />
+            <FancyLink text={email} to={`mailto:${email}`} />
           </div>
         </div>
       </motion.div>

@@ -12,7 +12,7 @@ const nextConfig = {
     taint: true,
   },
   env: {
-    PASSWORD_PROTECT: true,
+    PASSWORD_PROTECT: process.env.PASSWORD_PROTECT,
   },
 };
 
