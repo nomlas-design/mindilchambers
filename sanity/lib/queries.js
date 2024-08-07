@@ -19,3 +19,12 @@ export const GLOBAL_QUERY = `*[_type == "globalContent"][0] {
   phoneNumber,
   email
 }`;
+
+// Members page queries
+
+export const MEMBERS_QUERY = groq`*[_type == "member"] {
+  _id,
+  name,
+  seniority,
+  "portraitUrl": portrait.asset->url
+}`;

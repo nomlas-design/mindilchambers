@@ -30,11 +30,13 @@ const customStructure = (S) =>
             ])
         ),
       S.divider(),
-      S.documentTypeListItem('post').title('Blog Posts'),
-      // Add other document types here
+      S.documentTypeListItem('member').title('Members'),
+      S.documentTypeListItem('article').title('Articles'),
       ...S.documentTypeListItems().filter(
         (listItem) =>
-          !['homePage', 'globalContent', 'post'].includes(listItem.getId())
+          !['homePage', 'globalContent', 'member', 'article'].includes(
+            listItem.getId()
+          )
       ),
     ]);
 

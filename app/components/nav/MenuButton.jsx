@@ -18,33 +18,13 @@ const MenuButton = ({ menuOpen, onMenuToggle }) => {
     }),
   };
 
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-    if (!menuOpen) {
-      onMenuToggle(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-  };
-
   const handleClick = () => {
-    if (menuOpen) {
-      onMenuToggle(false);
-    } else {
-      onMenuToggle(true);
-    }
+    menuOpen ? onMenuToggle(false) : onMenuToggle(true);
   };
 
   return (
     <>
-      <button
-        className='button-menu'
-        onClick={handleClick}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <button className='button-menu' onClick={handleClick}>
         <span className='button-menu__text' data-text={menuText}>
           {menuText}
         </span>

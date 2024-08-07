@@ -10,7 +10,7 @@ const HomeNav = ({ navSquareData }) => {
       <NavSquare
         title='Our Members'
         image='/blocktop.jpg'
-        link='/about'
+        link='/members'
         content={navSquareData?.members}
         variant={topNavVariants}
       />

@@ -30,13 +30,13 @@ const MenuOverlay = ({ content }) => {
           <div className='nav__container__icon'>
             <Image fill src='/icons/icon__location.svg' alt='Drop Pin' />
           </div>
-          <div>
+          <div className='nav__location__address'>
             <PortableText value={address} />
           </div>
         </div>
         <div className='nav__contact'>
           <div className='nav__contact__row'>
-            <div className='nav__contact__icon'>
+            <div className='nav__contact__icon nav__contact__icon--tel'>
               <Image fill src='/icons/icon__phone.svg' alt='Email' />
             </div>
             <FancyLink text={phoneNumber} to={`tel:${phoneNumber}`} />
