@@ -424,6 +424,10 @@ a {
 
 main {
   flex: 1 0 auto;
+
+  &.main {
+    margin-top: $navbar-height;
+  }
 }
 
 .wrapper {
@@ -450,10 +454,12 @@ main {
   }
   padding: 0 1.5rem;
   width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
   z-index: 5;
   padding: calc(1.1vw + 1.1vh);
   height: $navbar-height;
@@ -1188,6 +1194,8 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  width: 100%;
+  padding-left: 10rem;
 }
 
 .carousel__nav {
@@ -1204,11 +1212,11 @@ main {
 
   &__slide {
     position: absolute;
-    width: 60%;
+    width: 50%;
     height: 100%;
     opacity: 0;
     transition:
-      opacity 0.3s ease-out,
+      opacity 0s ease-out,
       transform 0.5s ease-out;
     visibility: hidden;
 
@@ -1231,6 +1239,13 @@ main {
       }
     }
 
+    &__content {
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+      display: flex;
+      flex-direction: column;
+    }
+
     &--active {
       opacity: 1;
       pointer-events: auto;
@@ -1239,7 +1254,7 @@ main {
       @for $i from 0 through 3 {
         &-#{$i} {
           z-index: 4 - $i;
-          transform: translateX($i * 29%) scale(1 - $i * 0.15);
+          transform: translateX($i * 40%) scale(1 - $i * 0.2);
 
           &:before {
             content: '';
@@ -1256,13 +1271,17 @@ main {
 
       &-3 {
         transition:
-          transform 0.3s ease-out,
+          transform 0.4s ease-out,
           opacity 0.5s ease-out;
       }
 
       &-0 {
         pointer-events: auto;
         cursor: pointer;
+
+        .carousel__slide__content {
+          opacity: 1;
+        }
       }
     }
 
@@ -1270,11 +1289,11 @@ main {
       opacity: 0;
       pointer-events: none;
       visibility: visible;
-      transform: translateX(-5%);
+      transform: translateX(-40%);
       transition:
-        opacity 0.5s ease-out,
+        opacity 0s ease-out,
         transform 0.5s ease-out,
-        visibility 0s 0.5s;
+        visibility 0s;
 
       &:before {
         content: '';
@@ -1285,7 +1304,7 @@ main {
         bottom: 0;
         background: rgba(251, 241, 221, 1);
         z-index: 1;
-        transition: background 0.2s ease-out;
+        transition: background 0.5s ease-out;
       }
     }
   }

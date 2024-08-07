@@ -47,7 +47,8 @@ const Carousel = ({ members }) => {
           </button>
         </div>
         <span className='carousel__nav__count'>
-          {activeSlide + 1} / {members.length}
+          <span className='count--active'>{activeSlide + 1}</span> /{' '}
+          {members.length}
         </span>
       </div>
     </div>
