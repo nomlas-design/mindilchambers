@@ -1,13 +1,23 @@
 'use client';
 import Image from 'next/image';
 import MenuButton from './MenuButton';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import MenuOverlay from './MenuOverlay';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { navBarVariants } from '@/app/animations/menuVariants';
 
 const Nav = ({ content }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+  }, [menuOpen]);
+
   const onMenuToggle = () => {
     setMenuOpen(!menuOpen);
   };
@@ -32,21 +42,33 @@ const Nav = ({ content }) => {
   };
 
   return (
-    <div className={classes.nav}>
-      <div className={classes.navWrapper}>
-        <div className={classes.navBar}>
-          <a href='/' className={classes.navLogo}>
-            <Image fill src='/logo-white.svg' alt='Mindil Chambers' priority />
-          </a>
-          <MenuButton menuOpen={menuOpen} onMenuToggle={onMenuToggle} />
+    <AnimatePresence>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={navBarVariants}
+        className={classes.nav}
+      >
+        <div className={classes.navWrapper}>
+          <div className={classes.navBar}>
+            <a href='/' className={classes.navLogo}>
+              <Image
+                fill
+                src='/logo-white.svg'
+                alt='Mindil Chambers'
+                priority
+              />
+            </a>
+            <MenuButton menuOpen={menuOpen} onMenuToggle={onMenuToggle} />
+          </div>
+          {menuOpen && (
+            <AnimatePresence>
+              <MenuOverlay onMenuToggle={onMenuToggle} content={content} />
+            </AnimatePresence>
+          )}
         </div>
-        {menuOpen && (
-          <AnimatePresence>
-            <MenuOverlay content={content} />
-          </AnimatePresence>
-        )}
-      </div>
-    </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

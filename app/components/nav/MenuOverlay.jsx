@@ -10,7 +10,7 @@ import {
 } from '@/app/animations/menuVariants';
 import FancyLink from '../links/FancyLink';
 
-const MenuOverlay = ({ content }) => {
+const MenuOverlay = ({ content, onMenuToggle }) => {
   const { acknowledgmentOfCountry, address, phoneNumber, email } = content;
   const currentYear = new Date().getFullYear();
   const menuItems = [
@@ -34,19 +34,17 @@ const MenuOverlay = ({ content }) => {
             <PortableText value={address} />
           </div>
         </div>
-        <div className='nav__contact'>
-          <div className='nav__contact__row'>
-            <div className='nav__contact__icon nav__contact__icon--tel'>
-              <Image fill src='/icons/icon__phone.svg' alt='Email' />
-            </div>
-            <FancyLink text={phoneNumber} to={`tel:${phoneNumber}`} />
+        <div className='nav__contact__row nav__contact__row--top'>
+          <div className='nav__contact__icon nav__contact__icon--tel'>
+            <Image fill src='/icons/icon__phone.svg' alt='Email' />
           </div>
-          <div className='nav__contact__row'>
-            <div className='nav__contact__icon'>
-              <Image fill src='/icons/icon__email.svg' alt='Email' />
-            </div>
-            <FancyLink text={email} to={`mailto:${email}`} />
+          <FancyLink text={phoneNumber} to={`tel:${phoneNumber}`} />
+        </div>
+        <div className='nav__contact__row nav__contact__row--bot'>
+          <div className='nav__contact__icon'>
+            <Image fill src='/icons/icon__email.svg' alt='Email' />
           </div>
+          <FancyLink text={email} to={`mailto:${email}`} />
         </div>
       </motion.div>
       <motion.nav className='nav__links' initial='hidden' animate='visible'>
@@ -56,6 +54,7 @@ const MenuOverlay = ({ content }) => {
             href={item.href}
             text={item.text}
             index={index}
+            onMenuToggle={onMenuToggle}
           />
         ))}
       </motion.nav>

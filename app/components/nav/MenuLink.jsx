@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { menuItemVariants } from '@/app/animations/menuVariants';
 import { useRef, useState, useEffect } from 'react';
 
-const MenuLink = ({ href, text, index }) => {
+const MenuLink = ({ href, text, index, onMenuToggle }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const classes = clsx({
@@ -17,6 +17,7 @@ const MenuLink = ({ href, text, index }) => {
       <Link
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={() => onMenuToggle()}
         className={classes}
         href={href}
       >

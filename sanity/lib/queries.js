@@ -26,5 +26,29 @@ export const MEMBERS_QUERY = groq`*[_type == "member"] {
   _id,
   name,
   seniority,
-  "portraitUrl": portrait.asset->url
+  "portraitUrl": portrait.asset->url,
+  "slug": slug.current
+}`;
+
+export const MEMBER_BY_SLUG_QUERY = groq`*[_type == "member" && slug.current == $slug][0] {
+  _id,
+  name,
+  seniority,
+  status,
+  "portraitUrl": portrait.asset->url,
+  phone,
+  email,
+  profile,
+  bio,
+  "articles": articles[]->{ 
+    _id,
+    title,
+    type,
+    description,
+    upload {
+      uploadType,
+      "fileUrl": file.asset->url,
+      url
+    }
+  }
 }`;

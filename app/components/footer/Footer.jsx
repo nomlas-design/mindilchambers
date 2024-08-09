@@ -4,15 +4,16 @@ import Image from 'next/image';
 import { PortableText } from '@portabletext/react';
 import FancyLink from '@/app/components/links/FancyLink';
 import {
-  contentVariants,
   footerNavVariants,
+  contentVariants,
 } from '@/app/animations/homeVariants';
+import { footerMainVariants } from '@/app/animations/menuVariants';
 const Footer = ({ variant, globalData }) => {
   return (
     <motion.footer
       initial='hidden'
       animate='visible'
-      variants={variant === 'home' ? footerNavVariants : contentVariants}
+      variants={variant === 'home' ? footerNavVariants : footerMainVariants}
       className={`footer ${variant}`}
     >
       <motion.div

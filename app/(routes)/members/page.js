@@ -1,4 +1,4 @@
-import Carousel from '@/app/components/members/Carousel';
+import MemberWrapper from '@/app/components/members/MemberWrapper';
 import { MEMBERS_QUERY, NAV_SQUARE_QUERY } from '@/sanity/lib/queries';
 import { sanityFetch } from '@/sanity/lib/fetch';
 
@@ -8,7 +8,7 @@ const Members = async () => {
     sanityFetch({ query: NAV_SQUARE_QUERY }),
   ]);
 
-  const duplicatedMembers = Array.from({ length: 10 }, (_, index) => {
+  const duplicatedMembers = Array.from({ length: 8 }, (_, index) => {
     const originalMember = membersData[0];
     return {
       ...originalMember,
@@ -18,19 +18,7 @@ const Members = async () => {
   });
 
   return (
-    <div className='wrapper wrapper--carousel'>
-      <div className='container container--carousel'>
-        <div className='carousel__sidebar'>
-          <h1>
-            <span> Our</span>
-            <br />
-            Members
-          </h1>
-          <h2>{navSquareData?.members}</h2>
-        </div>
-        <Carousel members={duplicatedMembers} />
-      </div>
-    </div>
+    <MemberWrapper members={duplicatedMembers} navSquareData={navSquareData} />
   );
 };
 
