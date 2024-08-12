@@ -167,6 +167,9 @@ a {
     grid-column: 1;
     overflow: hidden;
     will-change: opacity, transform;
+    box-shadow:
+      rgba(0, 0, 0, 0.16) 1px 3px 6px,
+      rgba(0, 0, 0, 0.23) 1px 3px 6px;
 
     &__logo {
       @include breakpoint('large') {
@@ -289,6 +292,9 @@ a {
     line-height: 1.4;
     overflow: hidden;
     will-change: transform, opacity;
+    box-shadow:
+      rgba(0, 0, 0, 0.16) 0px 3px 6px,
+      rgba(0, 0, 0, 0.23) 0px 3px 6px;
 
     &__bg {
       position: absolute;
@@ -485,10 +491,13 @@ main {
   z-index: 5;
   padding: calc(1.1vw + 1.1vh);
   height: $navbar-height;
-
   transition:
     height 0.5s ease-in-out,
     background 0.3s ease-out;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 1px 3px 6px,
+    rgba(0, 0, 0, 0.16) 1px 3px 6px;
+
   overflow: hidden;
 
   &::before {
@@ -887,6 +896,10 @@ main {
   background: #85705534;
   color: $text-colour;
   cursor: pointer;
+  box-shadow:
+    rgba(0, 0, 0, 0.03) 1px 2px 5px,
+    rgba(0, 0, 0, 0.05) 1px 2px 6px;
+
   transition:
     background 0.3s ease-out,
     color 0.3s ease-out,
@@ -1402,6 +1415,10 @@ main {
       position: relative;
       width: 100%;
       height: 100%;
+      box-shadow:
+        rgba(0, 0, 0, 0.03) 1px 2px 5px,
+        rgba(0, 0, 0, 0.05) 1px 2px 6px;
+
       img {
         object-fit: cover;
       }
@@ -1558,6 +1575,9 @@ main {
             height: 100%;
             width: 100%;
             transition: transform 0.2s ease-out;
+            box-shadow:
+              rgba(0, 0, 0, 0.03) 1px 2px 5px,
+              rgba(0, 0, 0, 0.05) 1px 2px 6px;
 
             img {
               object-fit: cover;
