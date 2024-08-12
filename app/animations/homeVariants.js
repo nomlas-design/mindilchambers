@@ -1,14 +1,14 @@
 export const mainVariants = {
-  hidden: { opacity: 0, x: -35 },
+  hidden: { opacity: 1, x: -45 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.3, ease: 'easeOut', delay: 0.1 },
+    transition: { duration: 0.3, ease: 'easeOut', delay: 0 },
   },
 };
 
 export const topNavVariants = {
-  hidden: { opacity: 0, y: -25 },
+  hidden: { opacity: 0, y: -45 },
   visible: {
     opacity: 1,
     y: 0,
@@ -17,20 +17,37 @@ export const topNavVariants = {
 };
 
 export const bottomNavVariants = {
-  hidden: { opacity: 0, x: 25 },
+  hidden: { opacity: 0, x: 45 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.4, ease: 'easeOut', delay: 0.12 },
+    transition: { duration: 0.4, ease: 'easeOut', delay: 0.5 },
   },
 };
 
 export const footerNavVariants = {
-  hidden: { opacity: 0, y: 25 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
     transition: { duration: 0.4, ease: 'easeOut', delay: 0.2 },
+  },
+};
+
+export const footerLeftVariants = {
+  hidden: { opacity: 0, x: -25 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.4, ease: 'easeOut', delay: 0.4 },
+  },
+};
+
+export const footerRightVariants = {
+  hidden: { opacity: 0, x: 25 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.4, ease: 'easeOut', delay: 0.4 },
   },
 };
 
@@ -40,15 +57,6 @@ export const contentVariants = {
     opacity: 1,
     y: 0,
     x: 0,
-    transition: { duration: 0.4, ease: 'easeOut', delay: 0.6 },
-  },
-};
-
-export const absoluteVariants = {
-  hidden: { opacity: 0, y: 5 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: 'easeOut', delay: 1.5 },
+    transition: { duration: 0.4, ease: 'easeOut', delay: 0.7 },
   },
 };

@@ -1,6 +1,6 @@
 'use client';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import HomeNav from '@/app/components/homenav/HomeNav';
 import {
   mainVariants,
@@ -12,7 +12,7 @@ import Footer from '@/app/components/footer/Footer';
 const HomeAnimation = ({ children, navSquareData, globalData }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setIsLoaded(true);
   }, []);
 

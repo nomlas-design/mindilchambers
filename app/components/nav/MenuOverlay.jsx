@@ -14,6 +14,7 @@ const MenuOverlay = ({ content, onMenuToggle }) => {
   const { acknowledgmentOfCountry, address, phoneNumber, email } = content;
   const currentYear = new Date().getFullYear();
   const menuItems = [
+    { href: '/', text: 'Home' },
     { href: '/members', text: 'Members' },
     { href: '/contact', text: 'Contact' },
   ];

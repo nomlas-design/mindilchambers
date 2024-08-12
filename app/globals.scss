@@ -1,11 +1,11 @@
 $padding: 2rem;
 $border-colour: #412d184f;
-$footer-height: 100px;
-$navbar-height: calc(70px + 4rem);
+$footer-height: 60px;
+$navbar-height: 110px;
 $background-grid-colour: #20150c;
 $background-colour: rgb(251, 241, 221);
-$background-text-colour: #f3ebdc;
-$secondary-text-colour: #c3bdb0;
+$background-text-colour: #f8f7f7;
+$secondary-text-colour: #d4d4d4;
 $background: #20150c;
 $text-colour: #282016;
 $heading-secondary: #857055;
@@ -45,20 +45,28 @@ body {
   max-width: 100vw;
   //overflow-x: hidden;
   min-height: 100vh;
+  background: $background-colour;
 }
 
 body.menu-open {
   overflow: hidden;
+
+  #root {
+    background: rgba(3, 1, 0, 0.25);
+    transition: background 0.5s ease-out;
+  }
 }
 
 body.menu-open .main,
-body.menu-open .footer {
-  opacity: 0;
+body.menu-open footer {
+  opacity: 0 !important;
 }
 
 body main {
   transition: opacity 0.5s ease-out;
   opacity: 1;
+  position: relative;
+  z-index: 1;
 }
 
 #root {
@@ -68,6 +76,7 @@ body main {
   background: $background-colour;
   font-family: inherit;
   justify-content: space-between;
+  position: relative;
 }
 
 a {
@@ -113,6 +122,15 @@ a {
 
 // Home
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .home-grid {
   position: relative;
   height: 100%;
@@ -121,21 +139,10 @@ a {
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr $footer-height;
-  grid-gap: 1px;
+  grid-gap: 1.25rem;
   color: $background-text-colour;
   overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: $background-colour;
-    opacity: 0.4;
-  }
+  padding: 1.25rem;
 
   &__main {
     @include breakpoint('medium') {
@@ -147,11 +154,11 @@ a {
     padding: 1.5rem;
     height: 100%;
     position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-
     background-image: url('/blockmain.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -159,6 +166,7 @@ a {
     grid-row: 1;
     grid-column: 1;
     overflow: hidden;
+    will-change: opacity, transform;
 
     &__logo {
       @include breakpoint('large') {
@@ -227,7 +235,7 @@ a {
 
         font-size: 1.25rem;
         font-weight: 300;
-        line-height: 1.2;
+        line-height: 1.4;
         color: $secondary-text-colour;
       }
     }
@@ -259,10 +267,10 @@ a {
     height: 100%;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
-    grid-gap: 1px;
+    grid-gap: 1.25rem;
+    position: relative;
+    z-index: 1;
   }
-
-  // target second div
 
   .navsquare {
     @include breakpoint('medium') {
@@ -339,6 +347,7 @@ a {
       transition: max-height 0.5s ease-out;
       transition-delay: 0.1s;
       color: $secondary-text-colour;
+      font-weight: 300;
 
       span {
         opacity: 0;
@@ -439,7 +448,7 @@ main {
   flex: 1 0 auto;
 
   &.main {
-    margin-top: $navbar-height;
+    margin-top: calc($navbar-height + 1.25rem);
   }
 }
 
@@ -456,20 +465,20 @@ main {
   width: 100%;
   height: 100%;
 }
-// Nav
+// Navbar
 
 .nav {
   @include breakpoint('medium') {
     padding: 0 2rem;
   }
   @include breakpoint('xlarge') {
-    padding: 0 3rem;
+    padding: 0 2rem;
   }
   padding: 0 1.5rem;
-  width: 100%;
+  width: calc(100% - 3rem);
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 1.5rem;
+  left: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -490,7 +499,7 @@ main {
     left: 0;
     width: 100%;
     min-height: 100vh;
-    background-image: url('/menu_overlay.png');
+    background-image: url('/menu_overlay3.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: right;
@@ -505,9 +514,9 @@ main {
     height: 100%;
     background: linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0.5) 40%,
-      rgba(0, 0, 0, 0.6) 100%
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.3) 40%,
+      rgba(0, 0, 0, 0.3) 100%
     );
     transition: background 0.3s ease-out 10s;
   }
@@ -551,8 +560,8 @@ main {
   &__logo {
     position: relative;
     display: block;
-    width: 250px;
-    height: 100px;
+    width: 200px;
+    height: 80px;
   }
 
   .button-menu {
@@ -640,7 +649,7 @@ main {
   }
 
   &--open {
-    height: 100vh;
+    height: calc(100vh - 3rem);
     position: fixed;
     color: $background-text-colour;
 
@@ -875,7 +884,7 @@ main {
   font-family: inherit;
   font-weight: 400;
   letter-spacing: 0.03rem;
-  background: $background-text-colour;
+  background: #85705534;
   color: $text-colour;
   cursor: pointer;
   transition:
@@ -884,7 +893,7 @@ main {
     border-color 0.3s ease-out;
 
   &:hover {
-    background: $heading-secondary;
+    background: #857055cf;
     color: white;
     border-color: #584b3a;
     svg {
@@ -994,6 +1003,7 @@ main {
 .fancy-link {
   position: relative;
   display: inline-block;
+  font-weight: 500;
   transition:
     transform 0.2s ease-out,
     color 0.2s ease-out; //overflow: hidden;
@@ -1006,8 +1016,8 @@ main {
     width: 100%;
     color: transparent;
     transition:
-      color 0.1s ease-out 0.1s,
-      opacity 0.1s ease-out 0.1s;
+      color 0s ease-out 0.1s,
+      opacity 0s ease-out 0.1s;
     z-index: 0;
     opacity: 0;
   }
@@ -1015,9 +1025,10 @@ main {
   &:hover {
     color: transparent;
     transform: translateY(-1.2rem);
+
     &:after {
       opacity: 0.85;
-      color: $background-text-colour;
+      color: $text-colour;
     }
   }
 }
@@ -1029,55 +1040,52 @@ main {
     padding: 2rem 2rem;
   }
   @include breakpoint('xlarge') {
-    padding: 2rem 2rem;
+    padding: 0rem;
   }
-  padding: 1.5rem;
-  position: relative;
+  padding: 0rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
   height: 100px;
   width: 100%;
-  color: $secondary-text-colour;
   height: $footer-height;
-  background: $background;
   will-change: opacity;
-  background-image: url('/footerblock.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: bottom;
   overflow: hidden;
+  color: $text-colour;
 
-  &::before {
-    content: '';
+  &__underlay {
     position: absolute;
-    top: 0;
+    z-index: 0;
     left: 0;
-    right: 0;
     bottom: 0;
-
-    background: linear-gradient(
-      -90deg,
-      rgba(0, 0, 0, 0.6) 0%,
-      rgba(0, 0, 0, 0.2) 40%,
-      rgba(0, 0, 0, 0.1) 100%
-    );
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-
-    left: 0;
-    top: -130px;
-
-    background-image: url('/grass.svg');
-    background-repeat: no-repeat;
     width: 100%;
-    height: 400px;
-    opacity: 0.8;
-    filter: contrast(0.8);
+    height: calc($footer-height + 1.25rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    user-select: none;
+    pointer-events: none;
+
+    animation: fadeIn 0.5s ease-out 0.5s forwards;
+    &__img {
+      height: 200px;
+      width: 300px;
+      position: relative;
+      opacity: 0.4;
+      &--left {
+        img {
+          object-fit: contain;
+          object-position: bottom left;
+        }
+      }
+
+      img {
+        object-fit: contain;
+        object-position: bottom right;
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 
   &__content {
@@ -1156,6 +1164,8 @@ main {
   .footer__content__nav {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
     white-space: nowrap;
     gap: 0.1rem;
     font-size: 0.9rem;
@@ -1175,8 +1185,15 @@ main {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
     grid-column: 1 / -1;
+  }
+
+  &.main {
+    height: calc($footer-height + 2.5rem);
+    .footer__content {
+      padding: 1.5rem 1.5rem;
+    }
   }
 }
 
@@ -1238,8 +1255,8 @@ main {
 
 .wrapper--carousel,
 .wrapper--fh {
-  height: calc(100vh - $navbar-height - $footer-height);
-  min-height: 800px;
+  height: calc(100vh - ($navbar-height + 2.5rem) - ($footer-height + 2.5rem));
+  min-height: 950px;
   padding: 5rem 3rem 5rem 3rem;
   color: $text-colour;
 }
@@ -1492,8 +1509,7 @@ main {
         height: 100%;
         width: 100%;
         min-height: calc(100vh - (70px + 4rem) - 115px - 20rem);
-        align-content: center;
-        justify-content: end;
+        justify-items: end;
 
         &.hovering .members_grid__member:not(:hover) {
           img {
