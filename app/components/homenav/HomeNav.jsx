@@ -17,7 +17,7 @@ const HomeNav = ({ navSquareData }) => {
       <NavSquare
         title='Get in touch'
         image='/blockbottom.jpg'
-        link='/services'
+        link='/contact'
         content={navSquareData?.contact}
         variant={bottomNavVariants}
       />
