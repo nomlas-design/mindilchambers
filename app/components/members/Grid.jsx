@@ -6,7 +6,7 @@ import {
   gridItemVariants,
 } from '@/app/animations/membersVariants';
 
-const Grid = ({ members, onMemberClick, isExiting }) => {
+const Grid = ({ members, onMemberClick }) => {
   const [hoveredMember, setHoveredMember] = useState(null);
 
   const handleMouseEnter = useCallback((memberId) => {

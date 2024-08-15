@@ -8,7 +8,7 @@ import {
   buttonRightVariants,
 } from '@/app/animations/membersVariants';
 
-const Carousel = ({ members }) => {
+const Carousel = ({ members, onMemberClick }) => {
   const [activeSlide, setActiveSlide] = useState(0);
 
   const handleNext = () => {
@@ -21,6 +21,10 @@ const Carousel = ({ members }) => {
     if (activeSlide > 0) {
       setActiveSlide(activeSlide - 1);
     }
+  };
+
+  const handleMemberClick = (member) => {
+    onMemberClick(member);
   };
 
   return (
@@ -39,6 +43,7 @@ const Carousel = ({ members }) => {
                 index={index}
                 key={member._id}
                 member={member}
+                onMemberClick={() => handleMemberClick(member)}
               />
             );
           })}

@@ -19,6 +19,8 @@ const MenuOverlay = ({ content, onMenuToggle }) => {
     { href: '/contact', text: 'Contact' },
   ];
 
+  console.log(content);
+
   return (
     <div className='nav__inner'>
       <motion.div
@@ -35,17 +37,19 @@ const MenuOverlay = ({ content, onMenuToggle }) => {
             <PortableText value={address} />
           </div>
         </div>
-        <div className='nav__contact__row nav__contact__row--top'>
-          <div className='nav__contact__icon nav__contact__icon--tel'>
-            <Image fill src='/icons/icon__phone.svg' alt='Email' />
+        <div className='nav__contact__column'>
+          <div className='nav__contact__row nav__contact__row--top'>
+            <div className='nav__contact__icon nav__contact__icon--tel'>
+              <Image fill src='/icons/icon__phone.svg' alt='Email' />
+            </div>
+            <FancyLink text={phoneNumber} to={`tel:${phoneNumber}`} />
           </div>
-          <FancyLink text={phoneNumber} to={`tel:${phoneNumber}`} />
-        </div>
-        <div className='nav__contact__row nav__contact__row--bot'>
-          <div className='nav__contact__icon'>
-            <Image fill src='/icons/icon__email.svg' alt='Email' />
+          <div className='nav__contact__row nav__contact__row--bot'>
+            <div className='nav__contact__icon'>
+              <Image fill src='/icons/icon__email.svg' alt='Email' />
+            </div>
+            <FancyLink text={email} to={`mailto:${email}`} />
           </div>
-          <FancyLink text={email} to={`mailto:${email}`} />
         </div>
       </motion.div>
       <motion.nav className='nav__links' initial='hidden' animate='visible'>
@@ -60,15 +64,31 @@ const MenuOverlay = ({ content, onMenuToggle }) => {
         ))}
       </motion.nav>
       <motion.div
-        className='nav__footer'
+        className='footer footer--nav'
         variants={menuSecondVariants}
         initial='hidden'
         animate='visible'
       >
-        <PortableText content={acknowledgmentOfCountry} />
-        <div className='nav__footer__row'>
-          <span>© Mindil Chambers {currentYear}</span>
-          <a className='textlink'>Privacy Policy</a>
+        <div className='footer__content'>
+          <div className='footer__content__country'>
+            <PortableText value={acknowledgmentOfCountry} />
+          </div>
+          <div className='footer__content__nav'>
+            <div className='footer__content__row'>
+              <span></span>
+              <span>© Mindil Chambers {currentYear}</span>
+            </div>
+            <div className='footer__content__row'>
+              <div>
+                <span>Designed & developed by </span>
+                <FancyLink
+                  text='Nomlas Design'
+                  to='https://nomlas.design/'
+                  external={true}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </motion.div>
     </div>

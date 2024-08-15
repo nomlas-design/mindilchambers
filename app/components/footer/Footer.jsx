@@ -19,11 +19,11 @@ const Footer = ({ variant, globalData }) => {
     >
       <div className='footer__underlay'>
         <div className='footer__underlay__img footer__underlay__img--left'>
-          <Image fill src='/footer_left.png' alt='' layout='fill' />
+          <Image fill src='/footer_left.png' alt='' />
         </div>
 
         <div className='footer__underlay__img footer__underlay__img--left'>
-          <Image fill src='/footer_right.png' alt='' layout='fill' />
+          <Image fill src='/footer_right.png' alt='' />
         </div>
       </div>
       <div className='footer__content'>
@@ -44,11 +44,11 @@ const Footer = ({ variant, globalData }) => {
           <div className='footer__content__row'>
             {variant === 'main' && (
               <>
-                <FancyLink text='Members' to='/' />
-                <FancyLink text='Contact Us' to='/' />
+                <FancyLink text='Members' to='/members' />
+                <FancyLink text='Contact Us' to='/contact' />
               </>
             )}
-            <FancyLink text='Privacy Policy' to='/' />
+            <FancyLink text='Privacy Policy' to='/privacy-policy' />
           </div>
           <span>© {new Date().getFullYear()} Mindil Chambers</span>
         </motion.div>

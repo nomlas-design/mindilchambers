@@ -7,12 +7,12 @@ export default async function RoutesLayout({ children }) {
   const [globalData] = await Promise.all([
     sanityFetch({ query: GLOBAL_QUERY }),
   ]);
-
   return (
     <>
       <Nav content={globalData} />
       <main className='main'>{children}</main>
       <Footer globalData={globalData} variant='main' />
+      <div id='modal-root' />
     </>
   );
 }
