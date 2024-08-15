@@ -3,7 +3,7 @@ import { MEMBERS_QUERY, NAV_SQUARE_QUERY } from '@/sanity/lib/queries';
 import { sanityFetch } from '@/sanity/lib/fetch';
 import { Suspense } from 'react';
 
-const Members = async ({ searchParams }) => {
+const Members = async () => {
   const [membersData, navSquareData] = await Promise.all([
     sanityFetch({ query: MEMBERS_QUERY }),
     sanityFetch({ query: NAV_SQUARE_QUERY }),
@@ -23,7 +23,6 @@ const Members = async ({ searchParams }) => {
       <MemberWrapper
         members={duplicatedMembers}
         navSquareData={navSquareData}
-        initialMemberSlug={searchParams.member}
       />
     </Suspense>
   );

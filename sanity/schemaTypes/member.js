@@ -40,8 +40,8 @@ export const member = {
       type: 'string',
       options: {
         list: [
-          { title: 'Permanent Member', value: 'permanent' },
-          { title: 'Visiting Member', value: 'visiting' },
+          { title: 'Permanent Member', value: 'Permanent Member' },
+          { title: 'Visiting Member', value: 'Visiting Member' },
         ],
       },
       initialValue: 'permanent',

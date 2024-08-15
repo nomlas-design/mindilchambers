@@ -1,17 +1,17 @@
 'use client';
 import { useState, useCallback, useEffect } from 'react';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import MemberList from './MemberList';
 import Sidebar from './Sidebar';
-import MemberModal from './MemberModal';
+import Modal from './MemberModal';
 
 const MemberWrapper = ({ members, navSquareData, initialMemberSlug }) => {
   const [display, setDisplay] = useState('Grid');
+  const [isExiting, setIsExiting] = useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (initialMemberSlug) {
@@ -19,8 +19,14 @@ const MemberWrapper = ({ members, navSquareData, initialMemberSlug }) => {
       if (member) {
         setSelectedMember(member);
       }
+    } else {
+      setSelectedMember(null);
     }
   }, [initialMemberSlug, members]);
+
+  const handleDisplayChange = (newDisplay) => {
+    setDisplay(newDisplay);
+  };
 
   useEffect(() => {
     if (selectedMember) {
@@ -30,28 +36,20 @@ const MemberWrapper = ({ members, navSquareData, initialMemberSlug }) => {
     }
   }, [selectedMember]);
 
-  const handleDisplayChange = (newDisplay) => {
-    setDisplay(newDisplay);
-  };
-
   const handleMemberClick = useCallback(
     (member) => {
-      setSelectedMember(member);
-      const newSearchParams = new URLSearchParams(searchParams);
-      newSearchParams.set('member', member.slug);
-      router.push(`${pathname}?${newSearchParams.toString()}`, {
-        scroll: false,
-      });
+      if (member && member.slug) {
+        setSelectedMember(member);
+        router.push(`/members/${member.slug}`, { scroll: false });
+      }
     },
-    [router, pathname, searchParams]
+    [router]
   );
 
   const handleCloseModal = useCallback(() => {
     setSelectedMember(null);
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.delete('member');
-    router.push(`${pathname}?${newSearchParams.toString()}`, { scroll: false });
-  }, [router, pathname, searchParams]);
+    router.push('/members', { scroll: false });
+  }, [router]);
 
   const classes = {
     wrapper: clsx(
@@ -63,15 +61,16 @@ const MemberWrapper = ({ members, navSquareData, initialMemberSlug }) => {
   return (
     <div className={classes.wrapper}>
       <div className='container container--carousel'>
-        <Sidebar data={navSquareData} />
+        <Sidebar data={navSquareData} isExiting={isExiting} />
         <MemberList
           members={members}
           navSquareData={navSquareData}
           display={display}
           onDisplayChange={handleDisplayChange}
           onMemberClick={handleMemberClick}
+          isExiting={isExiting}
         />
-        <MemberModal
+        <Modal
           isOpen={!!selectedMember}
           onClose={handleCloseModal}
           member={selectedMember}
