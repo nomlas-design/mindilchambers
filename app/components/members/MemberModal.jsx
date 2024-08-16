@@ -1,10 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import ModalPortal from './ModalPortal';
 import { PortableText } from 'next-sanity';
+import FancyLink from '@/app/components/links/FancyLink';
 
 const MemberModal = ({ isOpen, onClose, member }) => {
+  const bioRef = useRef(null);
+
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.keyCode === 27) onClose();
@@ -14,6 +18,58 @@ const MemberModal = ({ isOpen, onClose, member }) => {
       window.removeEventListener('keydown', handleEsc);
     };
   }, [onClose]);
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (bioRef.current) {
+        const hasOverflow =
+          bioRef.current.scrollHeight > bioRef.current.clientHeight;
+        bioRef.current.classList.toggle('has-overflow', hasOverflow);
+      }
+    };
+
+    checkOverflow();
+    window.addEventListener('resize', checkOverflow);
+
+    return () => {
+      window.removeEventListener('resize', checkOverflow);
+    };
+  }, [member]);
+
+  const formatUrl = (url) => {
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    return `https://${url}`;
+  };
+
+  // Custom components for PortableText
+  const components = {
+    marks: {
+      link: ({ value, children }) => {
+        const href = formatUrl(value?.href || '');
+        const target =
+          value?.openInNewTab || value?.blank ? '_blank' : undefined;
+        const rel = target === '_blank' ? 'noopener noreferrer' : undefined;
+
+        // Use a regular <a> tag for external links
+        if (href.startsWith('http')) {
+          return (
+            <a href={href} target={target} rel={rel}>
+              {children}
+            </a>
+          );
+        }
+
+        // Use Next.js Link for internal links
+        return (
+          <Link href={href} target={target} rel={rel}>
+            {children}
+          </Link>
+        );
+      },
+    },
+  };
 
   return (
     <ModalPortal>
@@ -28,9 +84,9 @@ const MemberModal = ({ isOpen, onClose, member }) => {
           >
             <motion.div
               className='member-modal__wrapper'
-              initial={{ x: '-80%', opacity: 0 }}
-              animate={{ x: '0px', opacity: 1 }}
-              exit={{ x: '-80%', opacity: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ ease: 'easeInOut', duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
             >
@@ -63,11 +119,61 @@ const MemberModal = ({ isOpen, onClose, member }) => {
                       </svg>
                     </button>
                   </div>
-                  <span className='seniority'>{member.seniority}</span>
-                  <p>{member.status}</p>
-                  <p>{member.phone}</p>
-                  <p>{member.email}</p>
-                  <PortableText value={member.bio} />
+                  <div className='member-modal__content__subheader'>
+                    <div className='member-modal__content__row'>
+                      <span className='seniority'>{member.seniority}</span>
+                      <span className='seniority'>{member.status}</span>
+                    </div>
+                    <div className='member-modal__content__row member-modal__content__row--spread'>
+                      <div className='member-modal__content__row'>
+                        <div className='member-modal__content__link'>
+                          <div className='member-modal__content__icon'>
+                            <Image
+                              fill
+                              src='/icons/icon__phone.svg'
+                              alt='Email'
+                            />
+                          </div>
+                          <FancyLink
+                            to={`tel:${member.phone}`}
+                            text={member.phone}
+                          />
+                        </div>
+                        <div className='member-modal__content__link'>
+                          <div className='member-modal__content__icon'>
+                            <Image
+                              fill
+                              src='/icons/icon__email.svg'
+                              alt='Email'
+                            />
+                          </div>
+                          <FancyLink
+                            to={`mailto:${member.email}`}
+                            text={member.email}
+                          />
+                        </div>
+                      </div>
+                      <div className='member-modal__content__link member-modal__content__link--external'>
+                        <Link
+                          href={member.profile}
+                          target='_blank'
+                          rel='noreferrer noopener'
+                        >
+                          External Profile
+                        </Link>
+                        <div className='member-modal__content__icon'>
+                          <Image
+                            fill
+                            src='/icons/icon__arrowup.svg'
+                            alt='Email'
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div ref={bioRef} className='member-modal__bio'>
+                    <PortableText components={components} value={member.bio} />
+                  </div>
                 </div>
               </div>
             </motion.div>

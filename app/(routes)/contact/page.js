@@ -1,14 +1,14 @@
-import { GLOBAL_QUERY } from '@/sanity/lib/queries';
+import { NAV_SQUARE_QUERY } from '@/sanity/lib/queries';
 import { sanityFetch } from '@/sanity/lib/fetch';
 import ContactAnimation from '@/app//animations/ContactAnimation';
 
 const Contact = async () => {
-  // const globalData = await Promise.all([sanityFetch({ query: GLOBAL_QUERY })]);
+  const query = await Promise.all([sanityFetch({ query: NAV_SQUARE_QUERY })]);
 
   return (
     <div className='wrapper wrapper--contact'>
       <div className='container container--contact'>
-        <ContactAnimation>
+        <ContactAnimation query={query}>
           <div className='contact-grid__main__content'>
             <h1>Main Area</h1>
           </div>

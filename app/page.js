@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Head from 'next/head';
 import { PortableText } from '@portabletext/react';
+import { Suspense } from 'react';
 
 import HomeAnimation from '@/app/animations/HomeAnimation';
 import ClientLoadingWrapper from '@/app/components/loading/ClientLoadingWrapper';
@@ -37,19 +38,26 @@ const Home = async () => {
   return (
     <>
       <Head></Head>
-      <ClientLoadingWrapper key='home-page'>
-        <HomeAnimation globalData={globalData} navSquareData={navSquareData}>
-          <div className='home-grid__main__logo'>
-            <Image fill src='/logo-white.svg' alt='Mindil Chambers' priority />
-          </div>
-          <div className='home-grid__main__content'>
-            <PortableText
-              value={introData.intro}
-              components={portableComponents}
-            />
-          </div>
-        </HomeAnimation>
-      </ClientLoadingWrapper>
+      <Suspense>
+        <ClientLoadingWrapper key='home-page'>
+          <HomeAnimation globalData={globalData} navSquareData={navSquareData}>
+            <div className='home-grid__main__logo'>
+              <Image
+                fill
+                src='/logo-white.svg'
+                alt='Mindil Chambers'
+                priority
+              />
+            </div>
+            <div className='home-grid__main__content'>
+              <PortableText
+                value={introData.intro}
+                components={portableComponents}
+              />
+            </div>
+          </HomeAnimation>
+        </ClientLoadingWrapper>
+      </Suspense>
     </>
   );
 };

@@ -1,32 +1,19 @@
 'use client';
 import { useState, useCallback, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import clsx from 'clsx';
 import MemberList from './MemberList';
 import Sidebar from './Sidebar';
 import Modal from './MemberModal';
 
-const MemberWrapper = ({ members, navSquareData, initialMemberSlug }) => {
+const MemberWrapper = ({ members, navSquareData }) => {
   const [display, setDisplay] = useState('Grid');
-  const [isExiting, setIsExiting] = useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
-  const router = useRouter();
-  const pathname = usePathname();
+  const [activeSlide, setActiveSlide] = useState(0);
 
-  useEffect(() => {
-    if (initialMemberSlug) {
-      const member = members.find((m) => m.slug === initialMemberSlug);
-      if (member) {
-        setSelectedMember(member);
-      }
-    } else {
-      setSelectedMember(null);
-    }
-  }, [initialMemberSlug, members]);
-
-  const handleDisplayChange = (newDisplay) => {
+  const handleDisplayChange = useCallback((newDisplay) => {
     setDisplay(newDisplay);
-  };
+  }, []);
 
   useEffect(() => {
     if (selectedMember) {
@@ -36,20 +23,19 @@ const MemberWrapper = ({ members, navSquareData, initialMemberSlug }) => {
     }
   }, [selectedMember]);
 
-  const handleMemberClick = useCallback(
-    (member) => {
-      if (member && member.slug) {
-        setSelectedMember(member);
-        router.push(`/members/${member.slug}`, { scroll: false });
-      }
-    },
-    [router]
-  );
+  const handleMemberClick = useCallback((member) => {
+    if (member) {
+      setSelectedMember(member);
+    }
+  }, []);
 
   const handleCloseModal = useCallback(() => {
     setSelectedMember(null);
-    router.push('/members', { scroll: false });
-  }, [router]);
+  }, []);
+
+  const handleSlideChange = useCallback((newActiveSlide) => {
+    setActiveSlide(newActiveSlide);
+  }, []);
 
   const classes = {
     wrapper: clsx(
@@ -61,14 +47,15 @@ const MemberWrapper = ({ members, navSquareData, initialMemberSlug }) => {
   return (
     <div className={classes.wrapper}>
       <div className='container container--carousel'>
-        <Sidebar data={navSquareData} isExiting={isExiting} />
+        <Sidebar data={navSquareData} />
         <MemberList
           members={members}
           navSquareData={navSquareData}
           display={display}
           onDisplayChange={handleDisplayChange}
           onMemberClick={handleMemberClick}
-          isExiting={isExiting}
+          activeSlide={activeSlide}
+          onSlideChange={handleSlideChange}
         />
         <Modal
           isOpen={!!selectedMember}

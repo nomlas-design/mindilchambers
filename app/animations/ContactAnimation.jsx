@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import ContactForm from '@/app/components/contact/ContactForm';
 import {
-  mainVariants,
-  topNavVariants,
-  contentVariants,
-} from '@/app/animations/homeVariants';
+  topSideVariants,
+  bottomSideVariants,
+  middleSideVariants,
+} from '@/app/animations/membersVariants';
 
-const ContactAnimation = ({ children }) => {
+const ContactAnimation = ({ query }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -19,33 +19,43 @@ const ContactAnimation = ({ children }) => {
     <AnimatePresence>
       {isLoaded && (
         <div className='contact-grid'>
-          <motion.div
-            initial='hidden'
-            animate='visible'
-            variants={mainVariants}
-            className='contact-grid__main'
-          >
-            <h1>
-              <motion.div
+          <div className='carousel__sidebar'>
+            <AnimatePresence mode='wait'>
+              <h1>
+                <motion.div
+                  initial='hidden'
+                  animate='visible'
+                  exit='exit'
+                  variants={topSideVariants}
+                  className='carousel__sidebar__title'
+                >
+                  Contact
+                </motion.div>
+                <motion.div
+                  initial='hidden'
+                  animate='visible'
+                  exit='exit'
+                  variants={middleSideVariants}
+                >
+                  Us
+                </motion.div>
+              </h1>
+            </AnimatePresence>
+            <AnimatePresence mode='wait'>
+              <motion.h2
                 initial='hidden'
                 animate='visible'
                 exit='exit'
-                className='carousel__sidebar__title'
+                variants={bottomSideVariants}
               >
-                Contact
-              </motion.div>
-              <motion.div initial='hidden' animate='visible' exit='exit'>
-                Us
-              </motion.div>
-            </h1>
-            <motion.h2 initial='hidden' animate='visible' exit='exit'>
-              Test
-            </motion.h2>
-          </motion.div>
+                {query?.members}
+              </motion.h2>
+            </AnimatePresence>
+          </div>
           <motion.div
             initial='hidden'
             animate='visible'
-            variants={topNavVariants}
+            variants={bottomSideVariants}
             className='contact-grid__form'
           >
             <ContactForm />

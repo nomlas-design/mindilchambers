@@ -31,6 +31,7 @@ export const MEMBERS_QUERY = groq`*[_type == "member"] {
   phone,
   email,
   bio,
+  profile,
   "slug": slug.current,
   "articles": articles[]->{ 
     _id,

@@ -9,7 +9,7 @@ const ContactForm = () => {
         <input type='text' placeholder='Full name' />
         <input type='email' placeholder='Email' />
         <textarea className='span' placeholder='How can we help?' rows='4' />
-        <button className='btn' type='submit'>
+        <button className='btn btn--light' type='submit'>
           Send
         </button>
       </form>

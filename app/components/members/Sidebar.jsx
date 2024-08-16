@@ -6,43 +6,39 @@ import {
   middleSideVariants,
 } from '@/app/animations/membersVariants';
 
-const Sidebar = ({ data, isExiting }) => {
+const Sidebar = ({ data }) => {
   return (
     <div className='carousel__sidebar'>
       <AnimatePresence mode='wait'>
-        {!isExiting && (
-          <h1>
-            <motion.div
-              initial='hidden'
-              animate='visible'
-              exit='exit'
-              variants={topSideVariants}
-              className='carousel__sidebar__title'
-            >
-              Our
-            </motion.div>
-            <motion.div
-              initial='hidden'
-              animate='visible'
-              exit='exit'
-              variants={middleSideVariants}
-            >
-              Members
-            </motion.div>
-          </h1>
-        )}
-      </AnimatePresence>
-      <AnimatePresence mode='wait'>
-        {!isExiting && (
-          <motion.h2
+        <h1>
+          <motion.div
             initial='hidden'
             animate='visible'
             exit='exit'
-            variants={bottomSideVariants}
+            variants={topSideVariants}
+            className='carousel__sidebar__title'
           >
-            {data?.members}
-          </motion.h2>
-        )}
+            Our
+          </motion.div>
+          <motion.div
+            initial='hidden'
+            animate='visible'
+            exit='exit'
+            variants={middleSideVariants}
+          >
+            Members
+          </motion.div>
+        </h1>
+      </AnimatePresence>
+      <AnimatePresence mode='wait'>
+        <motion.h2
+          initial='hidden'
+          animate='visible'
+          exit='exit'
+          variants={bottomSideVariants}
+        >
+          {data?.members}
+        </motion.h2>
       </AnimatePresence>
     </div>
   );

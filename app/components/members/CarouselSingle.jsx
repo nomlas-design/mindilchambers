@@ -1,7 +1,13 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const CarouselSingle = ({ member, index, activeSlide, onMemberClick }) => {
+const CarouselSingle = ({
+  member,
+  index,
+  activeSlide,
+  onMemberClick,
+  onSlideChange,
+}) => {
   const activeIndex = index - activeSlide;
   const isActive = activeIndex >= 0 && activeIndex < 4;
   const isTransitioningOut = activeIndex === 3;
@@ -23,8 +29,16 @@ const CarouselSingle = ({ member, index, activeSlide, onMemberClick }) => {
     visible: { opacity: 1, x: 0 },
   };
 
+  const handleMemberClick = () => {
+    if (activeIndex === 0) {
+      onMemberClick(member);
+    } else {
+      onSlideChange(index);
+    }
+  };
+
   return (
-    <div className={className} onClick={() => onMemberClick(member)}>
+    <div className={className} onClick={handleMemberClick}>
       <motion.div
         className='carousel__slide__inner'
         initial='hidden'

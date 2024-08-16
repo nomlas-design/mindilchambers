@@ -1,5 +1,4 @@
 import CarouselSingle from './CarouselSingle';
-import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   carouselVariants,
@@ -8,18 +7,16 @@ import {
   buttonRightVariants,
 } from '@/app/animations/membersVariants';
 
-const Carousel = ({ members, onMemberClick }) => {
-  const [activeSlide, setActiveSlide] = useState(0);
-
+const Carousel = ({ members, onMemberClick, activeSlide, onSlideChange }) => {
   const handleNext = () => {
     if (activeSlide < members.length - 1) {
-      setActiveSlide(activeSlide + 1);
+      onSlideChange(activeSlide + 1);
     }
   };
 
   const handlePrev = () => {
     if (activeSlide > 0) {
-      setActiveSlide(activeSlide - 1);
+      onSlideChange(activeSlide - 1);
     }
   };
 
@@ -44,6 +41,7 @@ const Carousel = ({ members, onMemberClick }) => {
                 key={member._id}
                 member={member}
                 onMemberClick={() => handleMemberClick(member)}
+                onSlideChange={onSlideChange}
               />
             );
           })}

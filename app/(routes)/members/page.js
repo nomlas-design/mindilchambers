@@ -3,7 +3,7 @@ import { MEMBERS_QUERY, NAV_SQUARE_QUERY } from '@/sanity/lib/queries';
 import { sanityFetch } from '@/sanity/lib/fetch';
 import { Suspense } from 'react';
 
-const Members = async () => {
+const MembersPage = async () => {
   const [membersData, navSquareData] = await Promise.all([
     sanityFetch({ query: MEMBERS_QUERY }),
     sanityFetch({ query: NAV_SQUARE_QUERY }),
@@ -13,8 +13,9 @@ const Members = async () => {
     const originalMember = membersData[0];
     return {
       ...originalMember,
-      _id: `${originalMember._id}_${index + 1}`,
+      id: `${originalMember.id}_${index + 1}`,
       name: `${originalMember.name} ${index + 1}`,
+      slug: `${originalMember.slug}_${index + 1}`,
     };
   });
 
@@ -28,4 +29,4 @@ const Members = async () => {
   );
 };
 
-export default Members;
+export default MembersPage;

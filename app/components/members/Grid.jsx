@@ -30,7 +30,6 @@ const Grid = ({ members, onMemberClick }) => {
       variants={gridContainerVariants}
       initial='hidden'
       animate='visible'
-      //exit='exit'
     >
       {members.map((member) => (
         <motion.div
