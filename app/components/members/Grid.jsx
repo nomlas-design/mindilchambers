@@ -44,8 +44,8 @@ const Grid = ({ members, onMemberClick }) => {
           <div className='members_grid__member__inner'>
             <div className='members_grid__member__image'>
               <Image
-                src={member.portraitUrl}
-                alt={member.name}
+                src={member.portraitUrl || '/portrait-placeholder.png'}
+                alt={member.name || 'Member portrait'}
                 fill
                 style={{
                   filter:

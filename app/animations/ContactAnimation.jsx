@@ -1,6 +1,9 @@
 'use client';
 import { motion, AnimatePresence } from 'framer-motion';
+import { PortableText } from '@portabletext/react';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import FancyLink from '@/app/components/links/FancyLink';
 import ContactForm from '@/app/components/contact/ContactForm';
 import {
   topSideVariants,
@@ -8,7 +11,7 @@ import {
   middleSideVariants,
 } from '@/app/animations/membersVariants';
 
-const ContactAnimation = ({ query }) => {
+const ContactAnimation = ({ navSquareData, globalData }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -46,23 +49,60 @@ const ContactAnimation = ({ query }) => {
             exit='exit'
             variants={bottomSideVariants}
           >
-            {query?.contact}
+            {navSquareData?.contact}
           </motion.h2>
+          <motion.div
+            initial='hidden'
+            animate='visible'
+            exit='exit'
+            variants={topSideVariants}
+            className='contact-grid__details'
+          >
+            <div className='contact-grid__location'>
+              <div className='contact-grid__location__icon'>
+                <Image
+                  fill
+                  src='/icons/icon__location--dark.svg'
+                  alt='Drop Pin'
+                />
+              </div>
+              <div className='contact-grid__location__address'>
+                <PortableText value={globalData?.address} />
+              </div>
+            </div>
+            <div className='contact-grid__column'>
+              <div className='contact-grid__row'>
+                <div className='contact-grid__icon contact-grid__icon--tel'>
+                  <Image fill src='/icons/icon__phone--dark.svg' alt='Email' />
+                </div>
+                <FancyLink
+                  text={globalData?.phoneNumber}
+                  to={`tel:${globalData?.phoneNumber}`}
+                />
+              </div>
+              <div className='contact-grid__row'>
+                <div className='contact-grid__icon'>
+                  <Image fill src='/icons/icon__email--dark.svg' alt='Email' />
+                </div>
+                <FancyLink
+                  text={globalData?.email}
+                  to={`mailto:${globalData?.email}`}
+                />
+              </div>
+            </div>
+          </motion.div>
         </AnimatePresence>
       </div>
       <AnimatePresence>
         {isLoaded && (
-          <div className='contact-grid__form'>
-            <>
-              <motion.div
-                initial='hidden'
-                animate='visible'
-                variants={bottomSideVariants}
-              >
-                <ContactForm />
-              </motion.div>
-            </>
-          </div>
+          <motion.div
+            initial='hidden'
+            animate='visible'
+            variants={bottomSideVariants}
+            className='contact-grid__form'
+          >
+            <ContactForm />
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

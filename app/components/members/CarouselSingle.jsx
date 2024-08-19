@@ -47,7 +47,11 @@ const CarouselSingle = ({
         transition={{ duration: 0.5, delay: index * 0.2 }}
       >
         <div className='carousel__slide__image'>
-          <Image src={member.portraitUrl} alt={member.name} fill />
+          <Image
+            src={member.portraitUrl || '/portrait-placeholder.png'}
+            alt={member.name || 'Member portrait'}
+            fill
+          />
         </div>
         <div className='carousel__slide__content'>
           <h3>{member.name}</h3>

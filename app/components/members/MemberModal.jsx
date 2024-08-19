@@ -37,10 +37,10 @@ const MemberModal = ({ isOpen, onClose, member }) => {
   }, [member]);
 
   const formatUrl = (url) => {
-    if (url.startsWith('http://') || url.startsWith('https://')) {
+    if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
       return url;
     }
-    return `https://${url}`;
+    return url ? `https://${url}` : '';
   };
 
   const components = {
@@ -105,18 +105,24 @@ const MemberModal = ({ isOpen, onClose, member }) => {
                   transition={{ delay: 0.1, duration: 0.3 }}
                   className='member-modal__img'
                 >
-                  <Image src={member.portraitUrl} alt={member.name} fill />
+                  <Image
+                    src={member.portraitUrl || '/portrait-placeholder.png'}
+                    alt={member.name || 'Member portrait'}
+                    fill
+                  />
                 </motion.div>
                 <div className='member-modal__content'>
                   <div className='member-modal__content__header'>
-                    <motion.h1
-                      variants={fadeInFromRight}
-                      initial='hidden'
-                      animate='visible'
-                      transition={{ delay: 0.2, duration: 0.3 }}
-                    >
-                      {member.name}
-                    </motion.h1>
+                    {member.name && (
+                      <motion.h1
+                        variants={fadeInFromRight}
+                        initial='hidden'
+                        animate='visible'
+                        transition={{ delay: 0.2, duration: 0.3 }}
+                      >
+                        {member.name}
+                      </motion.h1>
+                    )}
                     <motion.button
                       variants={fadeIn}
                       initial='hidden'
@@ -139,24 +145,28 @@ const MemberModal = ({ isOpen, onClose, member }) => {
                   </div>
                   <div className='member-modal__content__subheader'>
                     <div className='member-modal__content__row'>
-                      <motion.span
-                        variants={fadeInFromRight}
-                        initial='hidden'
-                        animate='visible'
-                        transition={{ delay: 0.3, duration: 0.3 }}
-                        className='seniority'
-                      >
-                        {member.seniority}
-                      </motion.span>
-                      <motion.span
-                        variants={fadeInFromRight}
-                        initial='hidden'
-                        animate='visible'
-                        transition={{ delay: 0.4, duration: 0.3 }}
-                        className='seniority'
-                      >
-                        {member.status}
-                      </motion.span>
+                      {member.seniority && (
+                        <motion.span
+                          variants={fadeInFromRight}
+                          initial='hidden'
+                          animate='visible'
+                          transition={{ delay: 0.3, duration: 0.3 }}
+                          className='seniority'
+                        >
+                          {member.seniority}
+                        </motion.span>
+                      )}
+                      {member.status && (
+                        <motion.span
+                          variants={fadeInFromRight}
+                          initial='hidden'
+                          animate='visible'
+                          transition={{ delay: 0.4, duration: 0.3 }}
+                          className='seniority'
+                        >
+                          {member.status}
+                        </motion.span>
+                      )}
                     </div>
                     <motion.div
                       variants={fadeIn}
@@ -166,61 +176,72 @@ const MemberModal = ({ isOpen, onClose, member }) => {
                       className='member-modal__content__row member-modal__content__row--spread'
                     >
                       <div className='member-modal__content__row'>
-                        <div className='member-modal__content__link'>
+                        {member.phone && (
+                          <div className='member-modal__content__link'>
+                            <div className='member-modal__content__icon'>
+                              <Image
+                                fill
+                                src='/icons/icon__phone.svg'
+                                alt='Phone'
+                              />
+                            </div>
+                            <FancyLink
+                              to={`tel:${member.phone}`}
+                              text={member.phone}
+                            />
+                          </div>
+                        )}
+                        {member.email && (
+                          <div className='member-modal__content__link'>
+                            <div className='member-modal__content__icon'>
+                              <Image
+                                fill
+                                src='/icons/icon__email.svg'
+                                alt='Email'
+                              />
+                            </div>
+                            <FancyLink
+                              to={`mailto:${member.email}`}
+                              text={member.email}
+                            />
+                          </div>
+                        )}
+                      </div>
+                      {member.profile && (
+                        <div className='member-modal__content__link member-modal__content__link--external'>
+                          <Link
+                            href={formatUrl(member.profile)}
+                            target='_blank'
+                            rel='noreferrer noopener'
+                          >
+                            External Profile
+                          </Link>
                           <div className='member-modal__content__icon'>
                             <Image
                               fill
-                              src='/icons/icon__phone.svg'
-                              alt='Email'
+                              src='/icons/icon__arrowup.svg'
+                              alt='External link'
                             />
                           </div>
-                          <FancyLink
-                            to={`tel:${member.phone}`}
-                            text={member.phone}
-                          />
                         </div>
-                        <div className='member-modal__content__link'>
-                          <div className='member-modal__content__icon'>
-                            <Image
-                              fill
-                              src='/icons/icon__email.svg'
-                              alt='Email'
-                            />
-                          </div>
-                          <FancyLink
-                            to={`mailto:${member.email}`}
-                            text={member.email}
-                          />
-                        </div>
-                      </div>
-                      <div className='member-modal__content__link member-modal__content__link--external'>
-                        <Link
-                          href={member.profile}
-                          target='_blank'
-                          rel='noreferrer noopener'
-                        >
-                          External Profile
-                        </Link>
-                        <div className='member-modal__content__icon'>
-                          <Image
-                            fill
-                            src='/icons/icon__arrowup.svg'
-                            alt='Email'
-                          />
-                        </div>
-                      </div>
+                      )}
                     </motion.div>
                   </div>
-                  <motion.div
-                    ref={bioRef}
-                    variants={fadeIn}
-                    initial='hidden'
-                    animate='visible'
-                    transition={{ delay: 0.9, duration: 0.3 }}
-                    className='member-modal__bio'
-                  >
-                    <PortableText components={components} value={member.bio} />
-                  </motion.div>
+                  {member.bio && (
+                    <motion.div
+                      ref={bioRef}
+                      variants={fadeIn}
+                      initial='hidden'
+                      animate='visible'
+                      transition={{ delay: 0.9, duration: 0.3 }}
+                      className='member-modal__bio'
+                    >
+                      <PortableText
+                        components={components}
+                        value={member.bio}
+                      />
+                    </motion.div>
+                  )}
                 </div>
               </div>
             </motion.div>

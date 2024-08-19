@@ -10,6 +10,18 @@ export const member = {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'firstName',
+      title: 'First Name',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'lastName',
+      title: 'Last Name',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'seniority',
       title: 'Seniority',
       type: 'string',
@@ -20,7 +32,7 @@ export const member = {
           { title: 'KC', value: `King's Counsel` },
         ],
       },
-      initialValue: 'barrister',
+      initialValue: 'Barrister',
     },
     {
       name: 'status',
@@ -32,8 +44,6 @@ export const member = {
           { title: 'Visiting Member', value: 'Visiting Member' },
         ],
       },
-      initialValue: 'permanent',
-      validation: (Rule) => Rule.required(),
     },
     {
       name: 'portrait',
@@ -44,7 +54,6 @@ export const member = {
       name: 'phone',
       title: 'Phone Number',
       type: 'string',
-      validation: (Rule) => Rule.required(),
     },
     {
       name: 'email',

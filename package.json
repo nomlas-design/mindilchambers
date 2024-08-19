@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formspree/react": "^2.5.1",
     "@piwikpro/next-piwik-pro": "^3.1.1",
     "@sanity/client": "^6.21.1",
     "@sanity/image-url": "^1.0.2",

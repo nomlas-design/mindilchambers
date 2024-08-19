@@ -21,10 +21,22 @@ export const GLOBAL_QUERY = `*[_type == "globalContent"][0] {
 }`;
 
 // Members page queries
-
-export const MEMBERS_QUERY = groq`*[_type == "member"] {
+export const MEMBERS_QUERY = groq`*[_type == "member"] | order(
+  // First priority: specific _id or Beth Wild
+  select(
+    _id == "5d304259-dd7b-45aa-b92f-dcdbc2f12cee" => 0,
+    lower(firstName) == "beth" && lower(lastName) == "wild" => 1,
+    2
+  ),
+  // Second priority: non-barristers before barristers
+  lower(seniority) == "barrister",
+  // Third priority: alphabetical by lastName
+  lower(lastName) asc
+) {
   _id,
   name,
+  firstName,
+  lastName,
   seniority,
   status,
   "portraitUrl": portrait.asset->url,
@@ -33,7 +45,7 @@ export const MEMBERS_QUERY = groq`*[_type == "member"] {
   bio,
   profile,
   "slug": slug.current,
-  "articles": articles[]->{ 
+  "articles": articles[]->{
     _id,
     title,
     type,
