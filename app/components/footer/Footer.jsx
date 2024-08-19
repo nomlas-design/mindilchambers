@@ -19,11 +19,11 @@ const Footer = ({ variant, globalData }) => {
     >
       <div className='footer__underlay'>
         <div className='footer__underlay__img footer__underlay__img--left'>
-          <Image fill src='/footer_left.png' alt='' />
+          <Image priority={true} fill src='/footer_left.png' alt='' />
         </div>
 
         <div className='footer__underlay__img footer__underlay__img--left'>
-          <Image fill src='/footer_right.png' alt='' />
+          <Image priority={true} fill src='/footer_right.png' alt='' />
         </div>
       </div>
       <div className='footer__content'>

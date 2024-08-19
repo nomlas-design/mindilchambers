@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ['@piwikpro/next-piwik-pro'],
   images: {
     remotePatterns: [
       {

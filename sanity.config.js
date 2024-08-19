@@ -1,12 +1,15 @@
 'use client';
-import { defineConfig } from 'sanity';
+import { defineConfig, isDev } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { apiVersion, dataset, projectId } from './sanity/env';
 import { schema } from './sanity/schema';
+import { visionTool } from '@sanity/vision';
 
 const singletonActions = new Set(['update', 'publish']);
 
 const singletonTypes = new Set(['homePage', 'globalContent']);
+
+const devOnlyPlugins = [visionTool()];
 
 const customStructure = (S) =>
   S.list()
@@ -67,5 +70,6 @@ export default defineConfig({
     structureTool({
       structure: customStructure,
     }),
+    ...(isDev ? devOnlyPlugins : []),
   ],
 });

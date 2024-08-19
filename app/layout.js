@@ -1,4 +1,5 @@
 import { Hind_Siliguri } from 'next/font/google';
+import PiwikProProvider from '@piwikpro/next-piwik-pro';
 import './globals.scss';
 
 export const metadata = {
@@ -16,7 +17,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={hind_siliguri.className}>
-        <div id='root'>{children}</div>
+        <PiwikProProvider
+          containerUrl={process.env.NEXT_PUBLIC_CONTAINER_URL}
+          containerId={process.env.NEXT_PUBLIC_CONTAINER_ID}
+        >
+          <div id='root'>{children}</div>
+        </PiwikProProvider>
       </body>
     </html>
   );

@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@piwikpro/next-piwik-pro": "^3.1.1",
     "@sanity/client": "^6.21.1",
     "@sanity/image-url": "^1.0.2",
-    "@sanity/vision": "^3.50.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "framer-motion": "^11.2.13",
@@ -28,6 +28,7 @@
     "swiper": "^11.1.9"
   },
   "devDependencies": {
+    "@sanity/vision": "^3.54.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.3"
   }

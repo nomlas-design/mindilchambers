@@ -43,7 +43,6 @@ const MemberModal = ({ isOpen, onClose, member }) => {
     return `https://${url}`;
   };
 
-  // Custom components for PortableText
   const components = {
     marks: {
       link: ({ value, children }) => {
@@ -52,7 +51,6 @@ const MemberModal = ({ isOpen, onClose, member }) => {
           value?.openInNewTab || value?.blank ? '_blank' : undefined;
         const rel = target === '_blank' ? 'noopener noreferrer' : undefined;
 
-        // Use a regular <a> tag for external links
         if (href.startsWith('http')) {
           return (
             <a href={href} target={target} rel={rel}>
@@ -61,7 +59,6 @@ const MemberModal = ({ isOpen, onClose, member }) => {
           );
         }
 
-        // Use Next.js Link for internal links
         return (
           <Link href={href} target={target} rel={rel}>
             {children}
@@ -69,6 +66,16 @@ const MemberModal = ({ isOpen, onClose, member }) => {
         );
       },
     },
+  };
+
+  const fadeInFromRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
   };
 
   return (
@@ -92,18 +99,29 @@ const MemberModal = ({ isOpen, onClose, member }) => {
             >
               <div className='member-modal__inner'>
                 <motion.div
-                  initial={{ x: '-80%', opacity: 0 }}
-                  animate={{ x: '0%', opacity: 1 }}
-                  exit={{ x: '-80%', opacity: 0 }}
-                  transition={{ delay: 0.2, duration: 0.3, ease: 'easeInOut' }}
+                  variants={fadeInFromRight}
+                  initial='hidden'
+                  animate='visible'
+                  transition={{ delay: 0.1, duration: 0.3 }}
                   className='member-modal__img'
                 >
                   <Image src={member.portraitUrl} alt={member.name} fill />
                 </motion.div>
                 <div className='member-modal__content'>
                   <div className='member-modal__content__header'>
-                    <h1>{member.name}</h1>
-                    <button
+                    <motion.h1
+                      variants={fadeInFromRight}
+                      initial='hidden'
+                      animate='visible'
+                      transition={{ delay: 0.2, duration: 0.3 }}
+                    >
+                      {member.name}
+                    </motion.h1>
+                    <motion.button
+                      variants={fadeIn}
+                      initial='hidden'
+                      animate='visible'
+                      transition={{ delay: 0.9, duration: 0.3 }}
                       className='btn btn--light btn--modal'
                       onClick={onClose}
                     >
@@ -117,14 +135,36 @@ const MemberModal = ({ isOpen, onClose, member }) => {
                           <polygon points='6.25 .71 5.53 0 3.12 2.41 .71 0 0 .71 2.41 3.12 0 5.53 .71 6.25 3.12 3.84 5.53 6.25 6.25 5.53 3.84 3.12 6.25 .71' />
                         </g>
                       </svg>
-                    </button>
+                    </motion.button>
                   </div>
                   <div className='member-modal__content__subheader'>
                     <div className='member-modal__content__row'>
-                      <span className='seniority'>{member.seniority}</span>
-                      <span className='seniority'>{member.status}</span>
+                      <motion.span
+                        variants={fadeInFromRight}
+                        initial='hidden'
+                        animate='visible'
+                        transition={{ delay: 0.3, duration: 0.3 }}
+                        className='seniority'
+                      >
+                        {member.seniority}
+                      </motion.span>
+                      <motion.span
+                        variants={fadeInFromRight}
+                        initial='hidden'
+                        animate='visible'
+                        transition={{ delay: 0.4, duration: 0.3 }}
+                        className='seniority'
+                      >
+                        {member.status}
+                      </motion.span>
                     </div>
-                    <div className='member-modal__content__row member-modal__content__row--spread'>
+                    <motion.div
+                      variants={fadeIn}
+                      initial='hidden'
+                      animate='visible'
+                      transition={{ delay: 0.6, duration: 0.3 }}
+                      className='member-modal__content__row member-modal__content__row--spread'
+                    >
                       <div className='member-modal__content__row'>
                         <div className='member-modal__content__link'>
                           <div className='member-modal__content__icon'>
@@ -169,11 +209,18 @@ const MemberModal = ({ isOpen, onClose, member }) => {
                           />
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
-                  <div ref={bioRef} className='member-modal__bio'>
+                  <motion.div
+                    ref={bioRef}
+                    variants={fadeIn}
+                    initial='hidden'
+                    animate='visible'
+                    transition={{ delay: 0.9, duration: 0.3 }}
+                    className='member-modal__bio'
+                  >
                     <PortableText components={components} value={member.bio} />
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>

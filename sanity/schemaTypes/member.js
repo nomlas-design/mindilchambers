@@ -10,18 +10,6 @@ export const member = {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      description:
-        'Click "Generate" to create a unique URL-friendly identifier based on the member\'s name. This will be used in the website URL for this member\'s profile page.',
-      options: {
-        source: 'name',
-        maxLength: 96,
-      },
-      validation: (Rule) => Rule.required(),
-    },
-    {
       name: 'seniority',
       title: 'Seniority',
       type: 'string',
@@ -62,7 +50,6 @@ export const member = {
       name: 'email',
       title: 'Email',
       type: 'string',
-      validation: (Rule) => Rule.required(),
     },
     {
       name: 'profile',

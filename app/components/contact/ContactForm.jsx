@@ -3,7 +3,7 @@ const ContactForm = () => {
     <div className='contact_form'>
       <div className='contact_form__header'>
         <h3>Get in touch</h3>
-        <span>You can reach us anytime</span>
+        <span>You can reach us anytime.</span>
       </div>
       <form>
         <input type='text' placeholder='Full name' />

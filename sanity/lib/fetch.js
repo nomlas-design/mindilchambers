@@ -1,12 +1,9 @@
-import { draftMode } from 'next/headers';
-
 import { client } from './client';
-import { token } from './token';
 
 export async function sanityFetch({
   query,
   params = {},
-  revalidate = 60, // default revalidation time in seconds
+  revalidate = 60,
   tags = [],
 }) {
   return client.fetch(query, params, {

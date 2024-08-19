@@ -19,8 +19,6 @@ const MenuOverlay = ({ content, onMenuToggle }) => {
     { href: '/contact', text: 'Contact' },
   ];
 
-  console.log(content);
-
   return (
     <div className='nav__inner'>
       <motion.div
