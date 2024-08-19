@@ -9,18 +9,6 @@ const MembersPage = async () => {
     sanityFetch({ query: NAV_SQUARE_QUERY }),
   ]);
 
-  // const duplicatedMembers = Array.from({ length: 8 }, (_, index) => {
-  //   const originalMember = membersData[0];
-  //   return {
-  //     ...originalMember,
-  //     id: `${originalMember.id}_${index + 1}`,
-  //     name: `${originalMember.name} ${index + 1}`,
-  //     slug: `${originalMember.slug}_${index + 1}`,
-  //   };
-  // });
-
-  console.log('membersData', membersData);
-
   return (
     <Suspense>
       <MemberWrapper members={membersData} navSquareData={navSquareData} />

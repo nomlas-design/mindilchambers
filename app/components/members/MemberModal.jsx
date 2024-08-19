@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import ModalPortal from './ModalPortal';
+import MemberArticles from './MemberArticles';
 import { PortableText } from 'next-sanity';
 import FancyLink from '@/app/components/links/FancyLink';
 
@@ -240,6 +241,7 @@ const MemberModal = ({ isOpen, onClose, member }) => {
                         components={components}
                         value={member.bio}
                       />
+                      <MemberArticles articles={member.articles} />
                     </motion.div>
                   )}
                 </div>

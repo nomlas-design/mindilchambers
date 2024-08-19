@@ -44,8 +44,6 @@ const MemberWrapper = ({ members, navSquareData }) => {
     ),
   };
 
-  console.log('membersData', members);
-
   return (
     <div className={classes.wrapper}>
       <div className='container container--carousel'>
