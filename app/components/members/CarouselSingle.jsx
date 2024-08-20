@@ -10,7 +10,7 @@ const CarouselSingle = ({
 }) => {
   const activeIndex = index - activeSlide;
   const isActive = activeIndex >= 0 && activeIndex < 4;
-  const isTransitioningOut = activeIndex === 3;
+  const isTransitioningOut = activeIndex === 4;
   const isTransitioningIn = activeIndex === -1;
   let className = `carousel__slide carousel__slide--${index} ${
     isActive

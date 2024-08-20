@@ -141,32 +141,37 @@ a {
 }
 
 .home-grid {
+  @include breakpoint('large') {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    overflow: hidden;
+    grid-gap: $gap-size;
+    grid-template-rows: 1fr $footer-height;
+  }
   position: relative;
   height: 100%;
   width: 100%;
   flex-grow: 1;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr $footer-height;
-  grid-gap: $gap-size;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-size;
   color: $background-text-colour;
-  overflow: hidden;
   padding: $gap-size;
 
   &__main {
-    @include breakpoint('medium') {
+    @include breakpoint('large') {
       padding: 2rem;
+      max-height: none;
+      justify-content: flex-end;
     }
-    @include breakpoint('xlarge') {
-      padding: 2rem;
-    }
-    padding: 1.5rem;
+
+    padding: 1rem;
     height: 100%;
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: flex-start;
     background-image: url('/blockmain.jpg');
     background-size: cover;
@@ -184,21 +189,28 @@ a {
       @include breakpoint('large') {
         width: 320px;
         height: 120px;
+        position: absolute;
+        left: 0;
+        top: 0;
       }
       @include breakpoint('xlarge') {
         width: 350px;
         height: 150px;
       }
+      position: relative;
       width: 200px;
       height: 80px;
       z-index: 1;
       will-change: opacity, transform;
-      position: absolute;
-      left: 0;
-      top: 0;
     }
 
     &__inner {
+      @include breakpoint('large') {
+        padding: 0;
+        flex-grow: 0;
+        justify-content: flex-end;
+      }
+      flex-grow: 1;
       width: 100%;
       height: 100%;
       will-change: opacity, transform;
@@ -206,9 +218,9 @@ a {
       position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: flex-start;
-      gap: 2rem;
+      gap: 8rem;
     }
 
     &__content {
@@ -285,17 +297,17 @@ a {
   }
 
   .navsquare {
-    @include breakpoint('medium') {
+    @include breakpoint('large') {
       padding: 2rem;
+      min-height: 0;
+      justify-content: flex-end;
     }
-    @include breakpoint('xlarge') {
-      padding: 2rem;
-    }
-    padding: 1.5rem;
+    min-height: 80px;
+    padding: 1rem;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: flex-start;
     font-size: 1.75rem;
     line-height: 1.4;
@@ -352,9 +364,15 @@ a {
 
     &__info {
       @include breakpoint('large') {
+        font-size: 1.1rem;
+        width: 100%;
+        display: block;
+      }
+      @include breakpoint('xlarge') {
         font-size: 1.25rem;
         width: 95%;
       }
+      display: none;
       width: 100%;
       font-size: 1.25rem;
       max-height: 0;
@@ -395,12 +413,11 @@ a {
         top: 2.25rem;
         right: 2.25rem;
       }
-
       position: absolute;
       z-index: 2;
       width: 28px;
       height: 28px;
-      top: 1.25rem;
+      top: 28px;
       right: 1.25rem;
       transition:
         top 0.3s ease-out,
@@ -483,13 +500,11 @@ main {
 // Navbar
 
 .nav {
-  @include breakpoint('medium') {
+  @include breakpoint('large') {
     padding: 0 2rem;
   }
-  @include breakpoint('xlarge') {
-    padding: 0 2rem;
-  }
-  padding: 0 1.5rem;
+
+  padding: 0 1rem;
   width: calc(100% - (2 * $gap-size));
   position: absolute;
   top: $gap-size;
@@ -562,12 +577,17 @@ main {
   }
 
   &__inner {
+    @include breakpoint('medium') {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-gap: 3rem;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: absolute;
     width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 3rem;
   }
 
   &__links {
@@ -667,7 +687,13 @@ main {
   }
 
   &--open {
-    height: calc(100vh - calc(2 * $gap-size));
+    @include breakpoint('large') {
+      height: calc(100vh - calc(2 * $gap-size));
+      min-height: none;
+    }
+
+    min-height: calc(100vh - calc(2 * $gap-size));
+    height: 100%;
     position: fixed;
     color: $background-text-colour;
 
@@ -694,14 +720,22 @@ main {
     }
 
     .nav__container {
+      @include breakpoint('large') {
+        align-self: center;
+        justify-content: flex-start;
+        flex-direction: row;
+        align-self: center;
+        gap: 4rem;
+      }
       grid-row: 2;
       grid-column: 1;
-      align-self: center;
       display: flex;
-      justify-content: flex-start;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 0.5rem;
+
       padding: 1rem 0.5rem;
-      align-items: center;
-      gap: 4rem;
 
       &__icon {
         position: relative;
@@ -744,11 +778,14 @@ main {
 
       .nav__contact {
         &__row {
+          @include breakpoint('large') {
+            height: 100%;
+          }
           display: flex;
           justify-content: flex-start;
           align-items: center;
           gap: 0.75rem;
-          height: 100%;
+          height: auto;
 
           .fancy-link {
             font-size: 1.5rem;
@@ -1076,16 +1113,17 @@ main {
   @include breakpoint('medium') {
     padding: 0 1rem;
   }
+  @include breakpoint('large') {
+    height: $footer-height;
+  }
   @include breakpoint('xlarge') {
     padding: 0 $gap-size;
   }
-  padding: 0rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  height: auto;
   width: 100%;
-  height: $footer-height;
   will-change: opacity;
   overflow: hidden;
   color: $text-colour;
@@ -1133,6 +1171,7 @@ main {
     gap: 2rem;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
 
     &__contact {
       display: flex;
@@ -1181,20 +1220,29 @@ main {
   }
 
   .footer__content {
+    @include breakpoint('large') {
+      flex-direction: row;
+      text-align: left;
+    }
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
+    text-align: center;
 
     p {
       margin: 0;
       font-weight: 300;
       line-height: 1.5;
-      // padding-left: 1rem;
-      // border-left: 1px solid rgba(255, 255, 255, 0.5);
       font-size: 0.9rem;
       opacity: 0.95;
+      br {
+        @include breakpoint('large') {
+          display: block;
+        }
+        display: none;
+      }
     }
   }
   .footer__content__country {
@@ -1220,10 +1268,15 @@ main {
     border-bottom: 1px solid $background-text-colour;
   }
   .footer__content__nav {
+    @include breakpoint('large') {
+      align-items: flex-end;
+      text-align: right;
+    }
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
+    text-align: center;
     white-space: nowrap;
     gap: 0.1rem;
     font-size: 0.9rem;
@@ -1486,7 +1539,7 @@ main {
       @for $i from 0 through 3 {
         &-#{$i} {
           z-index: 4 - $i;
-          transform: translateX($i * 40%) scale(1 - $i * 0.2);
+          transform: translateX($i * 35%) scale(1 - $i * 0.2);
           filter: saturate(1 - $i * 0.2);
           //opacity: 1 - $i * 0.2;
           .carousel__slide__inner {
