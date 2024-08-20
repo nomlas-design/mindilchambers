@@ -485,12 +485,15 @@ main {
 }
 
 .wrapper {
+  @include breakpoint('large') {
+    padding: 5rem 3rem 5rem 3rem;
+  }
+  padding: 3rem 1.25rem 4rem 1.25rem;
   max-width: 1800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 5rem 3rem 10rem 3rem;
 }
 
 .container {
@@ -579,13 +582,17 @@ main {
   &__inner {
     @include breakpoint('medium') {
       display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 0.25rem;
+      position: absolute;
+    }
+    @include breakpoint('large') {
       grid-template-columns: 2fr 1fr;
       grid-gap: 3rem;
     }
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    position: absolute;
+    gap: 3rem;
     width: 100%;
     height: 100%;
   }
@@ -754,6 +761,9 @@ main {
         position: relative;
 
         &::after {
+          @include breakpoint('medium') {
+            display: none;
+          }
           content: '';
           position: absolute;
           top: -1rem;
@@ -835,6 +845,8 @@ main {
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
+      justify-self: center;
+
       gap: calc(1.1vw + 1.1vh);
       margin-left: calc(1.1vw + 1.1vh);
 
@@ -1301,7 +1313,10 @@ main {
   }
 
   &.main {
-    height: calc($footer-height + 2.5rem);
+    @include breakpoint('large') {
+      height: calc($footer-height + 2.5rem);
+    }
+    height: auto;
     .footer__content {
       padding: 1.5rem 1.5rem;
     }
@@ -1366,33 +1381,48 @@ main {
 
 .wrapper--carousel,
 .wrapper--fh {
-  height: calc(100vh - ($navbar-height + 2.5rem) - ($footer-height + 2.5rem));
-  min-height: 950px;
-  padding: 5rem 3rem 5rem 3rem;
+  @include breakpoint('large') {
+    height: calc(100vh - ($navbar-height + 2.5rem) - ($footer-height + 2.5rem));
+    min-height: 950px;
+    padding: 5rem 3rem 5rem 3rem;
+  }
+  padding: 3rem 1.25rem 4rem 1.25rem;
+
   color: $text-colour;
 }
 
 .container--carousel {
+  @include breakpoint('large') {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 5rem;
+    min-height: 800px;
+  }
   position: relative;
   width: 100%;
-  min-height: 800px;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-gap: 5rem;
+  height: 100%;
+  min-height: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .carousel__sidebar {
+  @include breakpoint('large') {
+    height: calc(
+      100vh - ($navbar-height + 2.5rem) - ($footer-height + 2.5rem) - 15rem
+    );
+    min-height: 800px;
+    position: sticky;
+    padding-bottom: 5rem;
+  }
+  height: 100%;
+  min-height: none;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   justify-content: center;
   align-items: flex-start;
-  padding-bottom: 5rem;
-  height: calc(
-    100vh - ($navbar-height + 2.5rem) - ($footer-height + 2.5rem) - 15rem
-  );
-  min-height: 800px;
-  position: sticky;
+  padding-bottom: 3rem;
   top: 0;
 
   h2 {
@@ -1414,12 +1444,15 @@ main {
 }
 
 .carousel__wrapper {
+  @include breakpoint('large') {
+    height: 100%;
+    padding-left: 10rem;
+  }
   display: flex;
   flex-direction: column;
   gap: 2rem;
   width: 100%;
-  padding-left: 10rem;
-  height: 100%;
+  height: 600px;
 }
 
 .carousel__nav {
@@ -1441,9 +1474,10 @@ main {
   }
 
   &__buttons {
+    @include breakpoint('large') {
+    }
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 2rem;
     width: 50%;
 
@@ -1619,9 +1653,21 @@ main {
   .container--carousel {
     .members_list {
       .members_grid {
+        @include breakpoint('small') {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @include breakpoint('medium') {
+          grid-gap: 1rem;
+          grid-template-columns: repeat(3, 1fr);
+        }
+        @include breakpoint('large') {
+          grid-gap: 2rem;
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        grid-gap: 3rem;
+        grid-template-columns: 1fr;
+        grid-gap: 2rem;
         height: 100%;
         width: 100%;
         min-height: calc(100vh - (70px + 4rem) - 115px - 20rem);
@@ -1635,8 +1681,13 @@ main {
         }
 
         &__member {
-          height: 400px;
-          width: 250px;
+          @include breakpoint('small') {
+            height: 400px;
+            width: 250px;
+          }
+          justify-self: center;
+          width: 100%;
+          height: 120vw;
           cursor: pointer;
           transition: z-index 0.1s ease-in-out;
 
@@ -2060,15 +2111,23 @@ main {
   align-items: center;
 
   &__wrapper {
+    @include breakpoint('small') {
+      width: 100vw;
+      height: 100vh;
+    }
+    @include breakpoint('large') {
+      width: 80%;
+      max-width: 1800px;
+      min-height: 400px;
+      height: 80vh;
+      max-height: 1000px;
+    }
     position: relative;
     z-index: 2;
-    width: 80%;
-    max-width: 1800px;
+    width: 100%;
+    height: 100%;
     background-image: url('/blockmember.jpg');
     background-size: cover;
-    height: calc(100vh - (40 * $gap-size));
-    min-height: 800px;
-    max-height: 100vh;
 
     box-shadow:
       rgba(0, 0, 0, 0.25) 54px 0px 55px,
@@ -2095,35 +2154,53 @@ main {
   }
 
   &__inner {
+    @include breakpoint('small') {
+      flex-direction: row;
+    }
     position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    flex-direction: column;
     position: relative;
     color: $background-text-colour;
   }
 
   &__content {
+    @include breakpoint('small') {
+      width: 55%;
+      padding: 2rem 3rem;
+    }
+    padding: 2rem 1.5rem;
     height: 100%;
-    width: 55%;
-    padding: 2rem 3rem;
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
 
     &__header {
+      @include breakpoint('large') {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
       display: flex;
       gap: 1rem;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column-reverse;
       width: 100%;
       h1 {
         font-size: 3rem;
         font-weight: 500;
         line-height: 1.2;
+      }
+      button {
+        @include breakpoint('large') {
+          align-self: center;
+        }
+        align-self: flex-start;
       }
     }
     .seniority {
@@ -2136,9 +2213,12 @@ main {
     }
 
     &__subheader {
+      @include breakpoint('medium') {
+        gap: 1.5rem;
+      }
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1rem;
       width: 100%;
     }
 
@@ -2147,10 +2227,35 @@ main {
       justify-content: flex-start;
       align-items: center;
       gap: 1rem;
-
       &--spread {
+        @include breakpoint('large') {
+          justify-content: space-between;
+          align-items: flex-start;
+          flex-direction: row;
+          gap: 1rem;
+        }
+        flex-direction: column;
         justify-content: space-between;
+        align-items: flex-start;
         width: 100%;
+        gap: 0.5rem;
+      }
+
+      &--details {
+        @include breakpoint('xlarge') {
+          flex-direction: row;
+        }
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      &--titles {
+        @include breakpoint('medium') {
+          flex-direction: row;
+        }
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
 
@@ -2308,9 +2413,13 @@ main {
   }
 
   &__img {
+    @include breakpoint('small') {
+      height: 100%;
+      width: 45%;
+    }
     position: relative;
-    width: 45%;
-    height: 100%;
+    width: 100%;
+    height: 45vw;
     img {
       object-fit: cover;
       width: 100%;

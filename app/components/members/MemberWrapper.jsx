@@ -1,6 +1,5 @@
 'use client';
 import { useState, useCallback, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
 import clsx from 'clsx';
 import MemberList from './MemberList';
 import Sidebar from './Sidebar';
@@ -10,9 +9,27 @@ const MemberWrapper = ({ members, navSquareData }) => {
   const [display, setDisplay] = useState('Grid');
   const [selectedMember, setSelectedMember] = useState(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const handleDisplayChange = useCallback((newDisplay) => {
     setDisplay(newDisplay);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobileView = window.innerWidth < 640;
+      setIsMobile(isMobileView);
+      if (isMobileView) {
+        setDisplay('Slides');
+      }
+    };
+
+    handleResize(); // Call once to set initial state
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   useEffect(() => {
@@ -56,6 +73,7 @@ const MemberWrapper = ({ members, navSquareData }) => {
           onMemberClick={handleMemberClick}
           activeSlide={activeSlide}
           onSlideChange={handleSlideChange}
+          isMobile={isMobile}
         />
         <Modal
           isOpen={!!selectedMember}

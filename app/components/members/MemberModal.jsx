@@ -145,7 +145,7 @@ const MemberModal = ({ isOpen, onClose, member }) => {
                     </motion.button>
                   </div>
                   <div className='member-modal__content__subheader'>
-                    <div className='member-modal__content__row'>
+                    <div className='member-modal__content__row member-modal__content__row--titles'>
                       {member.seniority && (
                         <motion.span
                           variants={fadeInFromRight}
@@ -176,7 +176,7 @@ const MemberModal = ({ isOpen, onClose, member }) => {
                       transition={{ delay: 0.6, duration: 0.3 }}
                       className='member-modal__content__row member-modal__content__row--spread'
                     >
-                      <div className='member-modal__content__row'>
+                      <div className='member-modal__content__row member-modal__content__row--details'>
                         {member.phone && (
                           <div className='member-modal__content__link'>
                             <div className='member-modal__content__icon'>
