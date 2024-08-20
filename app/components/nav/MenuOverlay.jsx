@@ -73,7 +73,6 @@ const MenuOverlay = ({ content, onMenuToggle }) => {
           </div>
           <div className='footer__content__nav'>
             <div className='footer__content__row'>
-              <span></span>
               <span>© Mindil Chambers {currentYear}</span>
             </div>
             <div className='footer__content__row'>
