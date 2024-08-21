@@ -6,7 +6,7 @@ import Sidebar from './Sidebar';
 import Modal from './MemberModal';
 
 const MemberWrapper = ({ members, navSquareData }) => {
-  const [display, setDisplay] = useState('Grid');
+  const [display, setDisplay] = useState('Slides');
   const [selectedMember, setSelectedMember] = useState(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
