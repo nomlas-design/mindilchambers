@@ -6,15 +6,15 @@ export const metadata = {
   title: 'Contact | Mindil Chambers',
   description:
     'For enquiries about legal representation, a current case, or any other matters.',
-  metadataBase: new URL('https://mindilchambers.com.au/contact'),
+  metadataBase: new URL('https://mindilchambers.com.au'),
   alternates: {
-    canonical: '/',
+    canonical: '/contact',
   },
   openGraph: {
     title: 'Contact | Mindil Chambers',
     description:
       'For enquiries about legal representation, a current case, or any other matters.',
-    url: 'https://mindilchambers.com.au',
+    url: 'https://mindilchambers.com.au/contact',
     siteName: 'Mindil Chambers',
     images: [
       {
