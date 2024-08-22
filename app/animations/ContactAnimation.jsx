@@ -21,7 +21,7 @@ const ContactAnimation = ({ navSquareData, globalData }) => {
   return (
     <div className='contact-grid'>
       <div className='carousel__sidebar'>
-        <AnimatePresence mode='wait'>
+        <AnimatePresence key='contact-details' mode='wait'>
           <h1>
             <motion.div
               initial='hidden'
@@ -71,29 +71,41 @@ const ContactAnimation = ({ navSquareData, globalData }) => {
               </div>
             </div>
             <div className='contact-grid__column'>
-              <div className='contact-grid__row'>
-                <div className='contact-grid__icon contact-grid__icon--tel'>
-                  <Image fill src='/icons/icon__phone--dark.svg' alt='Email' />
+              {globalData?.phoneNumber && (
+                <div className='contact-grid__row'>
+                  <div className='contact-grid__icon contact-grid__icon--tel'>
+                    <Image
+                      fill
+                      src='/icons/icon__phone--dark.svg'
+                      alt='Email'
+                    />
+                  </div>
+                  <FancyLink
+                    text={globalData?.phoneNumber}
+                    to={`tel:${globalData?.phoneNumber}`}
+                  />
                 </div>
-                <FancyLink
-                  text={globalData?.phoneNumber}
-                  to={`tel:${globalData?.phoneNumber}`}
-                />
-              </div>
-              <div className='contact-grid__row'>
-                <div className='contact-grid__icon'>
-                  <Image fill src='/icons/icon__email--dark.svg' alt='Email' />
+              )}
+              {globalData?.email && (
+                <div className='contact-grid__row'>
+                  <div className='contact-grid__icon'>
+                    <Image
+                      fill
+                      src='/icons/icon__email--dark.svg'
+                      alt='Email'
+                    />
+                  </div>
+                  <FancyLink
+                    text={globalData?.email}
+                    to={`mailto:${globalData?.email}`}
+                  />
                 </div>
-                <FancyLink
-                  text={globalData?.email}
-                  to={`mailto:${globalData?.email}`}
-                />
-              </div>
+              )}
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
-      <AnimatePresence>
+      <AnimatePresence key='contact-form'>
         {isLoaded && (
           <motion.div
             initial='hidden'

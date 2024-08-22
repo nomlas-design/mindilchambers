@@ -48,9 +48,10 @@ const Footer = ({ variant, globalData }) => {
                 <FancyLink text='Contact Us' to='/contact' />
               </>
             )}
-            <FancyLink text='Privacy Policy' to='/privacy-policy' />
           </div>
-          <span>© {new Date().getFullYear()} Mindil Chambers</span>
+          <span className='footer__content__small'>
+            © {new Date().getFullYear()} Mindil Chambers
+          </span>
         </motion.div>
       </div>
     </motion.footer>

@@ -36,18 +36,22 @@ const MenuOverlay = ({ content, onMenuToggle }) => {
           </div>
         </div>
         <div className='nav__contact__column'>
-          <div className='nav__contact__row nav__contact__row--top'>
-            <div className='nav__contact__icon nav__contact__icon--tel'>
-              <Image fill src='/icons/icon__phone.svg' alt='Email' />
+          {phoneNumber && (
+            <div className='nav__contact__row nav__contact__row--top'>
+              <div className='nav__contact__icon nav__contact__icon--tel'>
+                <Image fill src='/icons/icon__phone.svg' alt='Email' />
+              </div>
+              <FancyLink text={phoneNumber} to={`tel:${phoneNumber}`} />
             </div>
-            <FancyLink text={phoneNumber} to={`tel:${phoneNumber}`} />
-          </div>
-          <div className='nav__contact__row nav__contact__row--bot'>
-            <div className='nav__contact__icon'>
-              <Image fill src='/icons/icon__email.svg' alt='Email' />
+          )}
+          {email && (
+            <div className='nav__contact__row nav__contact__row--bot'>
+              <div className='nav__contact__icon'>
+                <Image fill src='/icons/icon__email.svg' alt='Email' />
+              </div>
+              <FancyLink text={email} to={`mailto:${email}`} />
             </div>
-            <FancyLink text={email} to={`mailto:${email}`} />
-          </div>
+          )}
         </div>
       </motion.div>
       <motion.nav className='nav__links' initial='hidden' animate='visible'>
