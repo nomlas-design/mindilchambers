@@ -1,5 +1,6 @@
 import { Hind_Siliguri } from 'next/font/google';
 import PiwikProProvider from '@piwikpro/next-piwik-pro';
+import NomlasTag from '@/app/components/NomlasTag';
 import './globals.scss';
 
 export const metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
         >
           <div id='root'>{children}</div>
         </PiwikProProvider>
+        <NomlasTag />
       </body>
     </html>
   );

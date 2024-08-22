@@ -1,14 +1,13 @@
 import { PortableText } from '@portabletext/react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Button from '@/app/components/Button';
 import MenuLink from './MenuLink';
 import {
   menuFirstVariants,
   menuSecondVariants,
-  menuContainerVariants,
 } from '@/app/animations/menuVariants';
-import FancyLink from '../links/FancyLink';
+import FancyLink from '@/app/components/links/FancyLink';
+import { usePiwikPro } from '@piwikpro/next-piwik-pro';
 
 const MenuOverlay = ({ content, onMenuToggle }) => {
   const { acknowledgmentOfCountry, address, phoneNumber, email } = content;
@@ -18,6 +17,12 @@ const MenuOverlay = ({ content, onMenuToggle }) => {
     { href: '/members', text: 'Members' },
     { href: '/contact', text: 'Contact' },
   ];
+
+  const { CustomEvent } = usePiwikPro();
+
+  const handleNomlasLinkClick = () => {
+    CustomEvent.trackEvent('Outbound Link', 'Click', 'Nomlas Design');
+  };
 
   return (
     <div className='nav__inner'>
@@ -86,6 +91,7 @@ const MenuOverlay = ({ content, onMenuToggle }) => {
                   text='Nomlas Design'
                   to='https://nomlas.design/'
                   external={true}
+                  onClick={handleNomlasLinkClick}
                 />
               </div>
             </div>
