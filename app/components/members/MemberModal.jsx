@@ -51,8 +51,6 @@ const MemberModal = ({ isOpen, onClose, member }) => {
     if (member._id === 'b2f337eb-8971-452e-ab18-80313643751a') {
       setClickCount((prevCount) => prevCount + 1);
 
-      console.log(clickCount);
-
       if (clickTimerRef.current) {
         clearTimeout(clickTimerRef.current);
       }
