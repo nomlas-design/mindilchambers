@@ -2587,3 +2587,17 @@ main {
     }
   }
 }
+
+.easteregg-mobile {
+  @include breakpoint('small') {
+    display: none !important;
+  }
+  display: block !important;
+}
+
+.easteregg-desktop {
+  @include breakpoint('small') {
+    display: block !important;
+  }
+  display: none !important;
+}

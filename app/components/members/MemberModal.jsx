@@ -12,7 +12,6 @@ const MemberModal = ({ isOpen, onClose, member }) => {
   const [clickCount, setClickCount] = useState(0);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
   const clickTimerRef = useRef(null);
-  const easterEggAreaRef = useRef(null);
 
   useEffect(() => {
     const handleEsc = (event) => {
@@ -152,6 +151,42 @@ const MemberModal = ({ isOpen, onClose, member }) => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className='member-modal__inner'>
+                <AnimatePresence>
+                  {showEasterEgg && (
+                    <motion.div
+                      variants={spinningVariants}
+                      initial='hidden'
+                      animate='visible'
+                      exit='exit'
+                      className='easteregg-mobile'
+                      style={{
+                        position: 'absolute',
+                        top: '0',
+                        left: '0',
+                        width: '100%',
+                        height: '100%',
+                        backgroundImage: 'url(/tom_easter.jpg)',
+                        backgroundSize: 'cover',
+                        color: 'black',
+                        padding: '5px',
+                        borderRadius: '5px',
+                        fontSize: '10vw',
+                        zIndex: '1000',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <div
+                        style={{
+                          transform: 'rotate(-45deg)',
+                        }}
+                      >
+                        DILIRANG MENGAMUK
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
                 <motion.div
                   variants={fadeInFromRight}
                   initial='hidden'
@@ -165,7 +200,6 @@ const MemberModal = ({ isOpen, onClose, member }) => {
                     fill
                   />
                   <div
-                    ref={easterEggAreaRef}
                     onClick={handleEasterEggClick}
                     style={{
                       position: 'absolute',
@@ -182,6 +216,7 @@ const MemberModal = ({ isOpen, onClose, member }) => {
                         initial='hidden'
                         animate='visible'
                         exit='exit'
+                        className='easteregg-desktop'
                         style={{
                           position: 'absolute',
                           top: '0',
@@ -212,6 +247,16 @@ const MemberModal = ({ isOpen, onClose, member }) => {
                 </motion.div>
                 <div className='member-modal__content'>
                   <div className='member-modal__content__header'>
+                    <div
+                      onClick={handleEasterEggClick}
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        width: '50px',
+                        height: '50px',
+                      }}
+                    />
                     {member.name && (
                       <motion.h1
                         variants={fadeInFromRight}
