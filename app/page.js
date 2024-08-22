@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { PortableText } from '@portabletext/react';
+import PortableTextWrapper from '@/app/components/PortableTextWrapper';
 import { Suspense } from 'react';
 
 import HomeAnimation from '@/app/animations/HomeAnimation';
@@ -72,7 +72,13 @@ const Home = async () => {
         if (index === 0) {
           return <h1>{children}</h1>;
         } else {
-          return <h2>{children}</h2>;
+          return (
+            <h2 className='home-grid__main__content__responsive-h2'>
+              <span className='home-grid__main__content__h2-content'>
+                {children}
+              </span>
+            </h2>
+          );
         }
       },
     },
@@ -92,10 +98,7 @@ const Home = async () => {
               />
             </div>
             <div className='home-grid__main__content'>
-              <PortableText
-                value={introData.intro}
-                components={portableComponents}
-              />
+              <PortableTextWrapper value={introData.intro} />
             </div>
           </HomeAnimation>
         </ClientLoadingWrapper>

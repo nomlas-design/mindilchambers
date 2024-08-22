@@ -262,6 +262,18 @@ a {
         line-height: 1.4;
         color: $secondary-text-colour;
       }
+
+      // &__responsive-h2 {
+      //   display: inline;
+      // }
+
+      // &__responsive-h2:not(:last-child)::after {
+      //   content: ' ';
+      // }
+
+      // &__h2-content {
+      //   display: inline;
+      // }
     }
 
     &::before {
@@ -330,6 +342,9 @@ a {
       rgba(0, 0, 0, 0.23) 0px 3px 6px;
 
     &__bg {
+      @include breakpoint('large') {
+        filter: saturate(0.65);
+      }
       position: absolute;
       left: -5%;
       top: -5%;
@@ -339,7 +354,6 @@ a {
       background-size: cover;
       background-repeat: no-repeat;
       transform: scale(1.1);
-      filter: saturate(0.65);
       transition: filter 0.3s ease-in-out;
       will-change: filter, transform;
 
@@ -359,9 +373,9 @@ a {
         right: 0;
         bottom: 0;
         background: linear-gradient(
-          5deg,
+          45deg,
           rgba(6, 2, 0, 0.8) 0%,
-          rgba(6, 2, 0, 0.5) 55%
+          rgba(6, 2, 0, 0.4) 55%
         );
         transition: background 0.3s ease-out;
       }
