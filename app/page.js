@@ -100,7 +100,9 @@ const Home = async () => {
           </HomeAnimation>
         </ClientLoadingWrapper>
       </Suspense>
-      <PiwikPageViewTracker />
+      <Suspense>
+        <PiwikPageViewTracker />
+      </Suspense>
       <CSSBackgroundPreloader src='/menuoverlay.png' />
     </>
   );
