@@ -1,11 +1,9 @@
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import CSSBackgroundPreloader from '@/app/components/CSSBackgroundPreloader';
 import clsx from 'clsx';
-import MenuOverlay from './MenuOverlay';
 
 const MenuButton = ({ menuOpen, onMenuToggle }) => {
   const [menuText, setMenuText] = useState('Menu');
-  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     menuOpen ? setMenuText('Close') : setMenuText('Menu');
@@ -24,6 +22,7 @@ const MenuButton = ({ menuOpen, onMenuToggle }) => {
 
   return (
     <>
+      <CSSBackgroundPreloader src='/icons/icon__menuclose.svg' />
       <button className='button-menu' onClick={handleClick}>
         <span className='button-menu__text' data-text={menuText}>
           {menuText}
