@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 
 import HomeAnimation from '@/app/animations/HomeAnimation';
 import ClientLoadingWrapper from '@/app/components/loading/ClientLoadingWrapper';
+import CSSBackgroundPreloader from '@/app/components/CSSBackgroundPreloader';
 
 import { sanityFetch } from '@/sanity/lib/fetch';
 import {
@@ -58,6 +59,7 @@ const Home = async () => {
           </HomeAnimation>
         </ClientLoadingWrapper>
       </Suspense>
+      <CSSBackgroundPreloader src='/menuoverlay.png' />
     </>
   );
 };

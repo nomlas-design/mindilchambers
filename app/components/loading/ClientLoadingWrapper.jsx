@@ -21,11 +21,8 @@ const ClientLoadingWrapper = ({ children }) => {
       try {
         await Promise.all(imagesToPreload.map(preloadImage));
         setPreloadComplete(true);
-        // Add a minimum delay to ensure the loading animation completes
         await new Promise((resolve) => setTimeout(resolve, 2750));
-        // Trigger final animation
         setIsLoading(false);
-        // Wait for final animation to complete
         await new Promise((resolve) => setTimeout(resolve, 750));
         setFinalAnimationComplete(true);
       } catch (error) {
