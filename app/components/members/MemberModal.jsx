@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,6 +9,10 @@ import FancyLink from '@/app/components/links/FancyLink';
 
 const MemberModal = ({ isOpen, onClose, member }) => {
   const bioRef = useRef(null);
+  const [clickCount, setClickCount] = useState(0);
+  const [showEasterEgg, setShowEasterEgg] = useState(false);
+  const clickTimerRef = useRef(null);
+  const easterEggAreaRef = useRef(null);
 
   useEffect(() => {
     const handleEsc = (event) => {
@@ -44,6 +48,29 @@ const MemberModal = ({ isOpen, onClose, member }) => {
     return url ? `https://${url}` : '';
   };
 
+  const handleEasterEggClick = (e) => {
+    if (member._id === 'b2f337eb-8971-452e-ab18-80313643751a') {
+      setClickCount((prevCount) => prevCount + 1);
+
+      console.log(clickCount);
+
+      if (clickTimerRef.current) {
+        clearTimeout(clickTimerRef.current);
+      }
+
+      clickTimerRef.current = setTimeout(() => {
+        if (clickCount >= 3) {
+          setShowEasterEgg(true);
+
+          setTimeout(() => {
+            setShowEasterEgg(false);
+          }, 5000);
+        }
+        setClickCount(0);
+      }, 500);
+    }
+  };
+
   const components = {
     marks: {
       link: ({ value, children }) => {
@@ -65,6 +92,32 @@ const MemberModal = ({ isOpen, onClose, member }) => {
             {children}
           </Link>
         );
+      },
+    },
+  };
+
+  const spinningVariants = {
+    hidden: {
+      opacity: 0,
+      rotate: 0,
+      scale: 0,
+    },
+    visible: {
+      opacity: 1,
+      rotate: 360,
+      scale: 1,
+      transition: {
+        duration: 1,
+        ease: 'easeInOut',
+      },
+    },
+    exit: {
+      opacity: 0,
+      rotate: 720,
+      scale: 0,
+      transition: {
+        duration: 1,
+        ease: 'easeInOut',
       },
     },
   };
@@ -111,6 +164,51 @@ const MemberModal = ({ isOpen, onClose, member }) => {
                     alt={member.name || 'Member portrait'}
                     fill
                   />
+                  <div
+                    ref={easterEggAreaRef}
+                    onClick={handleEasterEggClick}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '50px',
+                      height: '50px',
+                    }}
+                  />
+                  <AnimatePresence>
+                    {showEasterEgg && (
+                      <motion.div
+                        variants={spinningVariants}
+                        initial='hidden'
+                        animate='visible'
+                        exit='exit'
+                        style={{
+                          position: 'absolute',
+                          top: '0',
+                          left: '0',
+                          width: '100%',
+                          height: '100%',
+                          backgroundImage: 'url(/tom_easter.jpg)',
+                          backgroundSize: 'cover',
+                          color: 'black',
+                          padding: '5px',
+                          borderRadius: '5px',
+                          fontSize: '5vw',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <div
+                          style={{
+                            transform: 'rotate(-45deg)',
+                          }}
+                        >
+                          DILIRANG MENGAMUK
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
                 <div className='member-modal__content'>
                   <div className='member-modal__content__header'>
