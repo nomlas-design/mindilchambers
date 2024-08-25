@@ -17,6 +17,12 @@ export const hind_siliguri = Hind_Siliguri({
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
+      <head>
+        <meta
+          name='google-site-verification'
+          content='MgHur_2ovFVcj0pmZ7NPHzKT0bXW320uJghb_GPWDbg'
+        />
+      </head>
       <body className={hind_siliguri.className}>
         <PiwikProProvider
           containerUrl={process.env.NEXT_PUBLIC_CONTAINER_URL}

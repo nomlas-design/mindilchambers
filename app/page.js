@@ -63,27 +63,6 @@ const Home = async () => {
     sanityFetch({ query: GLOBAL_QUERY }),
   ]);
 
-  const portableComponents = {
-    block: {
-      normal: ({ children, index }) => {
-        if (children.length === 0) {
-          return null;
-        }
-        if (index === 0) {
-          return <h1>{children}</h1>;
-        } else {
-          return (
-            <h2 className='home-grid__main__content__responsive-h2'>
-              <span className='home-grid__main__content__h2-content'>
-                {children}
-              </span>
-            </h2>
-          );
-        }
-      },
-    },
-  };
-
   return (
     <>
       <Suspense>
