@@ -2349,6 +2349,7 @@ main {
     }
     padding: 2rem 1.5rem;
     height: 100%;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
@@ -2590,7 +2591,9 @@ main {
     @include breakpoint('small') {
       height: 100%;
       width: 45%;
+      display: block;
     }
+    display: none;
     position: relative;
     width: 100%;
     height: 45vw;
