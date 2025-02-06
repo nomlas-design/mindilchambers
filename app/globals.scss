@@ -809,7 +809,7 @@ main {
     .nav__container {
       @include breakpoint('large') {
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
         flex-direction: row;
         align-self: center;
         gap: 4rem;
