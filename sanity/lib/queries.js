@@ -24,9 +24,10 @@ export const GLOBAL_QUERY = `*[_type == "globalContent"][0] {
 export const MEMBERS_QUERY = groq`*[_type == "member"] | order(
   // First priority: specific _id or Beth Wild
   select(
-    _id == "5d304259-dd7b-45aa-b92f-dcdbc2f12cee" => 0,
-    lower(firstName) == "beth" && lower(lastName) == "wild" => 1,
-    2
+    _id == "5d304259-dd7b-45aa-b92f-dcdbc2f12cee" => 0, // Beth
+    _id == "2096eb98-9757-4b96-80d3-2af6aaa203a8" => 1, // Emrys
+    _id == "b2f337eb-8971-452e-ab18-80313643751a" => 2, // Tom
+    3
   ),
   // Second priority: non-barristers before barristers
   lower(seniority) == "barrister",
