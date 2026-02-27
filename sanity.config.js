@@ -4,6 +4,7 @@ import { structureTool } from 'sanity/structure';
 import { apiVersion, dataset, projectId } from './sanity/env';
 import { schema } from './sanity/schema';
 import { visionTool } from '@sanity/vision';
+import { createClearPriorityOrderAction } from './sanity/plugins/clearPriorityOrder';
 
 const singletonActions = new Set(['update', 'publish']);
 
@@ -61,10 +62,21 @@ export default defineConfig({
   },
   document: {
     // For singleton types, filter out actions that are not explicitly included
-    actions: (input, context) =>
-      singletonTypes.has(context.schemaType)
-        ? input.filter(({ action }) => action && singletonActions.has(action))
-        : input,
+    actions: (input, context) => {
+      // For singleton types, filter actions
+      if (singletonTypes.has(context.schemaType)) {
+        return input.filter(({ action }) => action && singletonActions.has(action));
+      }
+      // For members, wrap publish to clear priorityOrder when priority is off
+      if (context.schemaType === 'member') {
+        return input.map((action) =>
+          action.action === 'publish'
+            ? createClearPriorityOrderAction(action)
+            : action
+        );
+      }
+      return input;
+    },
   },
   plugins: [
     structureTool({

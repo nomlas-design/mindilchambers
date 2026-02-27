@@ -46,6 +46,19 @@ export const member = {
       },
     },
     {
+      name: 'priority',
+      title: 'Priority',
+      type: 'boolean',
+      initialValue: false,
+    },
+    {
+      name: 'priorityOrder',
+      title: 'Priority Order',
+      type: 'number',
+      description: 'Lower numbers appear first on the members page.',
+      hidden: ({ document }) => !document?.priority,
+    },
+    {
       name: 'portrait',
       title: 'Portrait',
       type: 'image',
